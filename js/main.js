@@ -30,10 +30,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Slider functionality with Dots Navigation
-    const slides = document.querySelectorAll('#home .slide');
-    const dotsContainer = document.querySelector('#home .slider-dots');
+    const slides = document.querySelectorAll('#home .slide, #hero .slide');
+    const dotsContainer = document.querySelector('#home .slider-dots, #hero .slider-dots');
     let currentSlide = 0;
     let dots = []; // Array to store dot elements
+
+    // Check if we're on a project page
+    const isProjectPage = window.location.pathname.includes('/proyectos/');
+
+    // Image navigation for each project (only for main page)
+    const projectImages = {
+        'estero-molgue': [
+            'img/estero-molgue/01.jpg',
+            'img/estero-molgue/10.jpg',
+            'img/estero-molgue/02.jpg'
+        ],
+        'laguna-bonita': [
+            'img/laguna-bonita/03.JPG',
+            'img/laguna-bonita/08.JPG',
+            'img/laguna-bonita/30.JPG'
+        ]
+    };
+
+    // Current image index for each project (only for main page)
+    let currentImageIndex = {
+        'estero-molgue': 0,
+        'laguna-bonita': 0
+    };
 
     function showSlide(index) {
         slides.forEach((slide, i) => {
@@ -54,6 +77,84 @@ document.addEventListener('DOMContentLoaded', function() {
         currentSlide = index; // Ensure currentSlide is updated
     }
 
+    function changeProjectImage(direction) {
+        // Only change images on main page, change slides on project pages
+        if (isProjectPage) {
+            changeSlide(direction);
+            return;
+        }
+
+        const activeSlide = document.querySelector('#home .slide.active');
+        if (!activeSlide) return;
+
+        const project = activeSlide.getAttribute('data-project');
+        const images = projectImages[project];
+        if (!images || images.length === 0) return;
+
+        const slideBackground = activeSlide.querySelector('.slide-background');
+        if (!slideBackground) return;
+
+        // Calculate new image index
+        let newIndex = currentImageIndex[project];
+        if (direction === 'next') {
+            newIndex = (newIndex + 1) % images.length;
+        } else if (direction === 'prev') {
+            newIndex = (newIndex - 1 + images.length) % images.length;
+        }
+
+        // Update current index
+        currentImageIndex[project] = newIndex;
+
+        // Add changing class for animation
+        slideBackground.classList.add('changing');
+
+        // Change background image at the peak of the animation (50% of 800ms = 400ms)
+        setTimeout(() => {
+            slideBackground.style.backgroundImage = `url('${images[newIndex]}')`;
+        }, 400);
+        
+        // Remove changing class after animation completes
+        setTimeout(() => {
+            slideBackground.classList.remove('changing');
+        }, 800);
+    }
+
+    function changeSlide(direction) {
+        // Navigate between slides on project pages
+        let newIndex = currentSlide;
+        if (direction === 'next') {
+            newIndex = (currentSlide + 1) % slides.length;
+        } else if (direction === 'prev') {
+            newIndex = (currentSlide - 1 + slides.length) % slides.length;
+        }
+        showSlide(newIndex);
+    }
+
+    function createRippleEffect(x, y) {
+        const ripple = document.querySelector('.click-ripple');
+        if (!ripple) return;
+
+        // Remove any existing animation
+        ripple.classList.remove('animate');
+        
+        // Position the ripple at click coordinates
+        const size = 100;
+        ripple.style.width = size + 'px';
+        ripple.style.height = size + 'px';
+        ripple.style.left = (x - size / 2) + 'px';
+        ripple.style.top = (y - size / 2) + 'px';
+
+        // Trigger animation
+        setTimeout(() => {
+            ripple.classList.add('animate');
+        }, 10);
+
+        // Remove animation class after animation completes
+        setTimeout(() => {
+            ripple.classList.remove('animate');
+        }, 800);
+    }
+
     function createDots() {
         if (!dotsContainer) return;
         slides.forEach((_, i) => {
@@ -68,9 +169,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Initialize image navigation
+    function initImageNavigation() {
+        const navAreas = document.querySelectorAll('.nav-area');
+        
+        navAreas.forEach(area => {
+            area.addEventListener('click', (e) => {
+                const direction = area.getAttribute('data-direction');
+                const sliderElement = document.querySelector('#home .slider, #hero .slider');
+                
+                if (!sliderElement) return;
+                
+                // Create ripple effect at click position
+                createRippleEffect(e.clientX - sliderElement.getBoundingClientRect().left, 
+                                 e.clientY - sliderElement.getBoundingClientRect().top);
+                
+                // Change image or slide depending on page type
+                changeProjectImage(direction);
+            });
+
+            // Add touch support for mobile
+            area.addEventListener('touchstart', (e) => {
+                e.preventDefault(); // Prevent default touch behavior
+                const direction = area.getAttribute('data-direction');
+                const touch = e.touches[0];
+                const sliderElement = document.querySelector('#home .slider, #hero .slider');
+                
+                if (!sliderElement) return;
+                
+                // Create ripple effect at touch position
+                createRippleEffect(touch.clientX - sliderElement.getBoundingClientRect().left, 
+                                 touch.clientY - sliderElement.getBoundingClientRect().top);
+                
+                // Change image or slide depending on page type
+                changeProjectImage(direction);
+            });
+        });
+    }
+
     if (slides.length > 0) {
         createDots();
         showSlide(currentSlide); // Show initial slide and set first dot active
+        initImageNavigation(); // Initialize image navigation
         
         // Optional: Auto-slide (uncomment to enable)
         // let autoSlideInterval = setInterval(() => {
@@ -79,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // }, 7000);
 
         // Optional: Pause auto-slide on hover over slider (if auto-slide is enabled)
-        // const sliderElement = document.querySelector('#home .slider');
+        // const sliderElement = document.querySelector('#home .slider, #hero .slider');
         // if (sliderElement && autoSlideInterval) { 
         //     sliderElement.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
         //     sliderElement.addEventListener('mouseleave', () => {
@@ -151,6 +291,100 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.warn('jQuery is not loaded. Ripple and Magic Cursor effects cannot be initialized.');
     }
+
+    // Project Cards Click Functionality
+    function initProjectCardsClick() {
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Prevent default if clicking on the button
+                if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
+                    return; // Let the button handle its own click
+                }
+                
+                const project = card.getAttribute('data-project');
+                const ripple = card.querySelector('.project-card-ripple');
+                
+                if (ripple) {
+                    // Create ripple effect
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Position and size the ripple
+                    const size = 100;
+                    ripple.style.width = size + 'px';
+                    ripple.style.height = size + 'px';
+                    ripple.style.left = (x - size / 2) + 'px';
+                    ripple.style.top = (y - size / 2) + 'px';
+                    
+                    // Remove existing animation
+                    ripple.classList.remove('animate');
+                    
+                    // Trigger animation
+                    setTimeout(() => {
+                        ripple.classList.add('animate');
+                    }, 10);
+                    
+                    // Navigate after ripple starts
+                    setTimeout(() => {
+                        if (project === 'estero-molgue') {
+                            window.location.href = 'proyectos/estero-molgue.html';
+                        } else if (project === 'laguna-bonita') {
+                            window.location.href = 'proyectos/laguna-bonita.html';
+                        }
+                    }, 200);
+                }
+            });
+        });
+    }
+
+    // Contact Button Click Functionality
+    function initContactButtonClick() {
+        const contactButton = document.querySelector('.contact-form .btn');
+        
+        if (contactButton) {
+            contactButton.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent form submission for demo
+                
+                // Create temporary ripple element
+                const ripple = document.createElement('div');
+                ripple.className = 'project-card-ripple animate';
+                
+                const rect = contactButton.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Position and size the ripple
+                const size = 80;
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = (x - size / 2) + 'px';
+                ripple.style.top = (y - size / 2) + 'px';
+                ripple.style.position = 'absolute';
+                
+                // Add to button (make sure button has relative positioning)
+                contactButton.style.position = 'relative';
+                contactButton.style.overflow = 'hidden';
+                contactButton.appendChild(ripple);
+                
+                // Remove ripple after animation
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 600);
+                
+                // Here you would normally submit the form
+                console.log('Contact form submitted with ripple effect!');
+            });
+        }
+    }
+
+    // Initialize all click functionalities
+    initProjectCardsClick();
+    initContactButtonClick();
 }); 
 
 

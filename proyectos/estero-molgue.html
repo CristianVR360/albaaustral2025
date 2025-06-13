@@ -3,34 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Estero Molgue - Alba Austral</title>
+    <title>Estero Molgue - Alba Austral</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header>
-        <h1>Alba Austral</h1>
-        <nav>
+    <button class="mobile-nav-toggle" aria-label="Abrir navegación" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <aside class="sidebar">
+        <div class="logo-container">
+            <a href="../index.html">
+                <img src="../img/logo_alba_austral.png" alt="Alba Austral Logo" class="logo">
+            </a>
+        </div>
+        <nav class="main-nav">
             <ul>
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="../nosotros.html">Nosotros</a></li>
-                <li><a href="index.html">Proyectos</a></li>
-                <li><a href="../contacto.html">Contacto</a></li>
+                <li class="active"><a href="#hero">Inicio</a></li>
+                <li><a href="#caracteristicas">Características</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#masterplan">Masterplan</a></li>
+                <li><a href="#video">Video</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-    </header>
+        <div class="sidebar-footer">
+            <div class="social-icons">
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Teléfono"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+    </aside>
 
-    <main>
-        <section id="project-detail">
-            <h2>Proyecto Estero Molgue</h2>
-            <p>Información detallada sobre el proyecto Estero Molgue.</p>
-            <!-- Aquí irá más contenido específico del proyecto -->
+    <main class="main-content-area">
+        <!-- Hero Section (Slider) -->
+        <section id="hero" class="full-height-section">
+            <div class="slider">
+                <!-- Slide 1 -->
+                <div class="slide active" id="info-slide-1">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/01.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Estero Molgue</h2>
+                        <h3>Tu inversión estratégica en Río Bueno</h3>
+                        <p>Exclusividad y naturaleza a solo 30 minutos de Osorno. Parcelas de 5000m² con factibilidad de servicios básicos y excelente accesibilidad.</p>
+                        <a href="#caracteristicas" class="btn">Conocer Más</a>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide" id="info-slide-2">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/02.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Ubicación Privilegiada</h2>
+                        <h3>Conectividad y Naturaleza</h3>
+                        <p>Estratégicamente ubicado en Río Bueno, Región de Los Ríos. Acceso directo desde ruta principal con proyección de alta plusvalía.</p>
+                        <a href="#masterplan" class="btn">Ver Ubicación</a>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide" id="info-slide-3">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/03.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Naturaleza Prístina</h2>
+                        <h3>Entorno Natural Único</h3>
+                        <p>Rodeado de paisajes únicos de la Región de Los Ríos, donde la tranquilidad y la belleza natural se encuentran.</p>
+                        <a href="#galeria" class="btn">Explorar</a>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="slide" id="info-slide-4">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/04.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Servicios Garantizados</h2>
+                        <h3>Infraestructura Completa</h3>
+                        <p>Factibilidad de luz y agua para todas las parcelas, con excelente accesibilidad y caminos internos.</p>
+                        <a href="#caracteristicas" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="slide" id="info-slide-5">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/05.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Inversión Inteligente</h2>
+                        <h3>Proyección de Crecimiento</h3>
+                        <p>Una oportunidad única de inversión en una zona de desarrollo emergente con alta proyección de plusvalía.</p>
+                        <a href="#contacto" class="btn">Invertir Ahora</a>
+                    </div>
+                </div>
+
+                <!-- Slide 6 -->
+                <div class="slide" id="info-slide-6">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/06.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Galería de Fotos</h2>
+                        <h3>Descubre la belleza natural</h3>
+                        <p>Explora cada rincón de este exclusivo proyecto a través de nuestra galería fotográfica.</p>
+                        <a href="#galeria" class="btn">Ver Galería</a>
+                    </div>
+                </div>
+
+                <!-- Slide 7 -->
+                <div class="slide" id="info-slide-7">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/07.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Parcelas Amplias</h2>
+                        <h3>5000m² de Libertad</h3>
+                        <p>Espacios generosos que te permiten desarrollar el proyecto de tus sueños con total libertad y privacidad.</p>
+                        <a href="#caracteristicas" class="btn">Ver Características</a>
+                    </div>
+                </div>
+
+                <!-- Slide 8 -->
+                <div class="slide" id="info-slide-8">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/08.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Masterplan 360°</h2>
+                        <h3>Visualiza tu futuro hogar</h3>
+                        <p>Recorre virtualmente el proyecto y conoce la distribución de parcelas y áreas comunes.</p>
+                        <a href="#masterplan" class="btn">Explorar</a>
+                    </div>
+                </div>
+
+                <!-- Slide 9 -->
+                <div class="slide" id="info-slide-9">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/09.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Accesibilidad Total</h2>
+                        <h3>Conectado con la Ciudad</h3>
+                        <p>A solo 30 minutos de Osorno, combina la tranquilidad rural con la cercanía a servicios urbanos.</p>
+                        <a href="#contacto" class="btn">Consultar</a>
+                    </div>
+                </div>
+
+                <!-- Slide 10 -->
+                <div class="slide" id="info-slide-10">
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/10.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Video Promocional</h2>
+                        <h3>Vive la experiencia</h3>
+                        <p>Conoce Estero Molgue a través de nuestro video promocional y descubre por qué es tu mejor inversión.</p>
+                        <a href="#video" class="btn">Ver Video</a>
+                    </div>
+                </div>
+                
+                <!-- Áreas de click para cambiar slides -->
+                <div class="image-navigation">
+                    <div class="nav-area nav-left" data-direction="prev"></div>
+                    <div class="nav-area nav-right" data-direction="next"></div>
+                </div>
+                
+                <!-- Efecto de click ripple -->
+                <div class="click-ripple"></div>
+            </div>
+
+            <div class="slider-dots"></div>
+        </section>
+
+        <!-- Características Section -->
+        <section id="caracteristicas" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Características del Proyecto</h2>
+                <p class="section-intro scroll-animate fade-in-up">Estero Molgue ofrece una combinación única de ubicación estratégica, servicios garantizados y potencial de inversión.</p>
+                <div class="features-grid">
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Parcelas de 5000m²</h3>
+                        <p>Amplios terrenos que te permiten desarrollar el proyecto de tus sueños con total libertad.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Factibilidad de Servicios</h3>
+                        <p>Luz y agua garantizados para todas las parcelas del proyecto.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-road"></i>
+                        <h3>Excelente Accesibilidad</h3>
+                        <p>Acceso directo desde ruta principal, facilitando la conectividad.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-clock"></i>
+                        <h3>30 min de Osorno</h3>
+                        <p>Ubicación estratégica que combina tranquilidad rural con cercanía urbana.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Alta Plusvalía</h3>
+                        <p>Proyección de crecimiento sostenido en una zona de desarrollo emergente.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Entorno Natural</h3>
+                        <p>Rodeado de naturaleza prístina y paisajes únicos de la Región de Los Ríos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galería Section -->
+        <section id="galeria" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Galería de Fotos</h2>
+                <p class="section-intro scroll-animate fade-in-up">Explora la belleza natural de Estero Molgue a través de nuestra galería fotográfica.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/01.jpg" alt="Estero Molgue - Vista 1" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/02.jpg" alt="Estero Molgue - Vista 2" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/03.jpg" alt="Estero Molgue - Vista 3" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/04.jpg" alt="Estero Molgue - Vista 4" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/05.jpg" alt="Estero Molgue - Vista 5" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/06.jpg" alt="Estero Molgue - Vista 6" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/07.jpg" alt="Estero Molgue - Vista 7" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/08.jpg" alt="Estero Molgue - Vista 8" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/09.jpg" alt="Estero Molgue - Vista 9" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/estero-molgue/10.jpg" alt="Estero Molgue - Vista 10" class="gallery-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Masterplan Section -->
+        <section id="masterplan" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Masterplan 360°</h2>
+                <p class="section-intro scroll-animate fade-in-up">Explora el proyecto de manera interactiva y conoce la distribución de parcelas.</p>
+                <div class="masterplan-container scroll-animate fade-in-up">
+                    <iframe src="https://astra360.s3.sa-east-1.amazonaws.com/AlbaAustral/EsteroMolgue/output/index.html" 
+                            width="100%" 
+                            height="600" 
+                            frameborder="0" 
+                            allowfullscreen
+                            class="masterplan-iframe">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section id="video" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Video Promocional</h2>
+                <p class="section-intro scroll-animate fade-in-up">Conoce Estero Molgue a través de nuestro video promocional.</p>
+                <div class="video-container scroll-animate fade-in-up">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/g4in9opyI_k" 
+                                width="100%" 
+                                height="400" 
+                                frameborder="0" 
+                                allowfullscreen
+                                class="video-iframe">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section -->
+        <section id="contacto" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Contacto</h2>
+                <p class="section-intro scroll-animate fade-in-up">¿Interesado en Estero Molgue? Contáctanos para más información o para agendar una visita.</p>
+                <div class="contacto-flex" style="display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start;">
+                    <div style="flex: 1 1 350px; min-width: 300px;">
+                        <form action="#" method="post" class="contact-form">
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="name">Nombre:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="phone">Teléfono:</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="message">Mensaje:</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu interés en Estero Molgue..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn scroll-animate fade-in-up">Enviar Consulta</button>
+                        </form>
+                    </div>
+                    <div style="flex: 1 1 350px; min-width: 300px; max-width: 450px;">
+                        <div style="background: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); padding: 20px; margin-bottom: 20px;">
+                            <h3 style="margin-top:0; color:#2c3e50;">Información del Proyecto</h3>
+                            <p style="margin: 0 0 10px 0;"><strong>Ubicación:</strong> Río Bueno, Región de Los Ríos</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Parcelas:</strong> 5000m² cada una</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Servicios:</strong> Factibilidad de luz y agua</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Contacto:</strong> Felipe Hoffmann</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Teléfono:</strong> <a href="tel:+56994326294">+56 9 9432 6294</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Alba Austral. Todos los derechos reservados.</p>
+    <!-- Footer -->
+    <footer class="site-footer scroll-animate fade-in-up">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Alba Austral</h4>
+                    <p>Invirtiendo en el futuro del sur de Chile. Encuentra tu lugar ideal con nosotros.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#hero">Inicio</a></li>
+                        <li><a href="#caracteristicas">Características</a></li>
+                        <li><a href="#galeria">Galería</a></li>
+                        <li><a href="#masterplan">Masterplan</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contacto Directo</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@albaaustral.cl">info@albaaustral.cl</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+56994326294">+56 9 9432 6294</a></p>
+                </div>
+                <div class="footer-column">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons-footer">
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Teléfono"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Alba Austral. Todos los derechos reservados.</p>
+                <a href="#hero" class="back-to-top" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="../js/main.js"></script>
+    <div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
 </body>
 </html> 

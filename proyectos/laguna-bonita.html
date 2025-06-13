@@ -3,34 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Laguna Bonita - Alba Austral</title>
+    <title>Laguna Bonita - Alba Austral</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header>
-        <h1>Alba Austral</h1>
-        <nav>
+    <button class="mobile-nav-toggle" aria-label="Abrir navegación" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <aside class="sidebar">
+        <div class="logo-container">
+            <a href="../index.html">
+                <img src="../img/logo_alba_austral.png" alt="Alba Austral Logo" class="logo">
+            </a>
+        </div>
+        <nav class="main-nav">
             <ul>
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="../nosotros.html">Nosotros</a></li>
-                <li><a href="index.html">Proyectos</a></li>
-                <li><a href="../contacto.html">Contacto</a></li>
+                <li class="active"><a href="#hero">Inicio</a></li>
+                <li><a href="#caracteristicas">Características</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#masterplan">Masterplan</a></li>
+                <li><a href="#video">Video</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-    </header>
+        <div class="sidebar-footer">
+            <div class="social-icons">
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Teléfono"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+    </aside>
 
-    <main>
-        <section id="project-detail">
-            <h2>Proyecto Laguna Bonita</h2>
-            <p>Información detallada sobre el proyecto Laguna Bonita.</p>
-            <!-- Aquí irá más contenido específico del proyecto -->
+    <main class="main-content-area">
+        <!-- Hero Section (Slider) -->
+        <section id="hero" class="full-height-section">
+            <div class="slider">
+                <!-- Slide 1 -->
+                <div class="slide active" id="info-slide-1">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/03.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Laguna Bonita</h2>
+                        <h3>Tu santuario privado en Puerto Octay</h3>
+                        <p>Entre lagos y montañas, descubre un refugio único en la Región de Los Lagos. Parcelas exclusivas con acceso directo a Laguna Bonita.</p>
+                        <a href="#caracteristicas" class="btn">Conocer Más</a>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide" id="info-slide-2">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/08.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Entorno Cordillerano</h2>
+                        <h3>Naturaleza y Exclusividad</h3>
+                        <p>Privilegiado entorno cordillerano con vistas panorámicas únicas. Un lugar donde la tranquilidad y la belleza natural se encuentran.</p>
+                        <a href="#masterplan" class="btn">Ver Ubicación</a>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide" id="info-slide-3">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/15.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Acceso Directo a la Laguna</h2>
+                        <h3>Vida junto al Agua</h3>
+                        <p>Disfruta del acceso directo a Laguna Bonita para actividades recreativas, pesca y contemplación de la naturaleza.</p>
+                        <a href="#galeria" class="btn">Explorar</a>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="slide" id="info-slide-4">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/22.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Parcelas Exclusivas</h2>
+                        <h3>5000m² de Privacidad</h3>
+                        <p>Amplias parcelas que garantizan privacidad total y libertad para desarrollar tu proyecto de vida ideal.</p>
+                        <a href="#caracteristicas" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="slide" id="info-slide-5">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/12.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Inversión Premium</h2>
+                        <h3>Valor en Crecimiento</h3>
+                        <p>Una oportunidad única de inversión en una ubicación privilegiada con potencial de revalorización excepcional.</p>
+                        <a href="#contacto" class="btn">Invertir Ahora</a>
+                    </div>
+                </div>
+
+                <!-- Slide 6 -->
+                <div class="slide" id="info-slide-6">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/30.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Galería de Fotos</h2>
+                        <h3>Paisajes que inspiran</h3>
+                        <p>Explora la majestuosidad de Laguna Bonita a través de nuestra galería fotográfica y déjate cautivar por su belleza.</p>
+                        <a href="#galeria" class="btn">Ver Galería</a>
+                    </div>
+                </div>
+
+                <!-- Slide 7 -->
+                <div class="slide" id="info-slide-7">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/18.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Bosques Nativos</h2>
+                        <h3>Biodiversidad Única</h3>
+                        <p>Rodeado de bosques nativos que preservan la flora y fauna local, creando un ecosistema único y sustentable.</p>
+                        <a href="#caracteristicas" class="btn">Descubrir Más</a>
+                    </div>
+                </div>
+
+                <!-- Slide 8 -->
+                <div class="slide" id="info-slide-8">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/25.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Masterplan 360°</h2>
+                        <h3>Diseña tu futuro</h3>
+                        <p>Visualiza la distribución del proyecto y encuentra la parcela perfecta para tu refugio en la naturaleza.</p>
+                        <a href="#masterplan" class="btn">Explorar</a>
+                    </div>
+                </div>
+
+                <!-- Slide 9 -->
+                <div class="slide" id="info-slide-9">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/07.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Servicios Completos</h2>
+                        <h3>Comodidad Garantizada</h3>
+                        <p>Factibilidad de servicios básicos y excelente accesibilidad para garantizar comodidad sin sacrificar la tranquilidad.</p>
+                        <a href="#contacto" class="btn">Consultar</a>
+                    </div>
+                </div>
+
+                <!-- Slide 10 -->
+                <div class="slide" id="info-slide-10">
+                    <div class="slide-background" style="background-image: url('../img/laguna-bonita/14.JPG');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Video Promocional</h2>
+                        <h3>Vive la magia</h3>
+                        <p>Sumérgete en la experiencia Laguna Bonita y descubre por qué este es el lugar perfecto para tu inversión.</p>
+                        <a href="#video" class="btn">Ver Video</a>
+                    </div>
+                </div>
+                
+                <!-- Áreas de click para cambiar slides -->
+                <div class="image-navigation">
+                    <div class="nav-area nav-left" data-direction="prev"></div>
+                    <div class="nav-area nav-right" data-direction="next"></div>
+                </div>
+                
+                <!-- Efecto de click ripple -->
+                <div class="click-ripple"></div>
+            </div>
+
+            <div class="slider-dots"></div>
+        </section>
+
+        <!-- Características Section -->
+        <section id="caracteristicas" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Características del Proyecto</h2>
+                <p class="section-intro scroll-animate fade-in-up">Laguna Bonita combina la exclusividad de un entorno natural único con todas las comodidades para tu proyecto de vida.</p>
+                <div class="features-grid">
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Parcelas de 5000m²</h3>
+                        <p>Espacios generosos para desarrollar tu proyecto soñado en un entorno natural privilegiado.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Factibilidad de Servicios</h3>
+                        <p>Luz y agua garantizados para todas las parcelas del proyecto.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-road"></i>
+                        <h3>Excelente Accesibilidad</h3>
+                        <p>Acceso directo y caminos internos que facilitan la llegada a tu parcela.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-water"></i>
+                        <h3>Acceso a Laguna Bonita</h3>
+                        <p>Acceso directo a la laguna para actividades recreativas y contemplación.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-mountain"></i>
+                        <h3>Entorno Cordillerano</h3>
+                        <p>Privilegiado entorno cordillerano con vistas panorámicas únicas.</p>
+                    </div>
+                    <div class="feature-item scroll-animate fade-in-up">
+                        <i class="fas fa-tree"></i>
+                        <h3>Naturaleza Prístina</h3>
+                        <p>Rodeado de bosques nativos y paisajes que inspiran tranquilidad y bienestar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galería Section -->
+        <section id="galeria" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Galería de Fotos</h2>
+                <p class="section-intro scroll-animate fade-in-up">Descubre la majestuosidad de Laguna Bonita a través de nuestra galería fotográfica.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/03.JPG" alt="Laguna Bonita - Vista 1" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/08.JPG" alt="Laguna Bonita - Vista 2" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/15.JPG" alt="Laguna Bonita - Vista 3" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/22.JPG" alt="Laguna Bonita - Vista 4" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/12.JPG" alt="Laguna Bonita - Vista 5" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/30.JPG" alt="Laguna Bonita - Vista 6" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/18.JPG" alt="Laguna Bonita - Vista 7" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/25.JPG" alt="Laguna Bonita - Vista 8" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/07.JPG" alt="Laguna Bonita - Vista 9" class="gallery-image">
+                    </div>
+                    <div class="gallery-item scroll-animate fade-in-up">
+                        <img src="../img/laguna-bonita/14.JPG" alt="Laguna Bonita - Vista 10" class="gallery-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Masterplan Section -->
+        <section id="masterplan" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Masterplan 360°</h2>
+                <p class="section-intro scroll-animate fade-in-up">Explora el proyecto de manera interactiva y encuentra tu parcela ideal.</p>
+                <div class="masterplan-container scroll-animate fade-in-up">
+                    <iframe src="https://lagunabonita-production.up.railway.app/masterplan.html" 
+                            width="100%" 
+                            height="600" 
+                            frameborder="0" 
+                            allowfullscreen
+                            class="masterplan-iframe">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section id="video" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Video Promocional</h2>
+                <p class="section-intro scroll-animate fade-in-up">Sumérgete en la experiencia Laguna Bonita.</p>
+                <div class="video-container scroll-animate fade-in-up">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/N7BlfK6HfBA" 
+                                width="100%" 
+                                height="400" 
+                                frameborder="0" 
+                                allowfullscreen
+                                class="video-iframe">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section -->
+        <section id="contacto" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Contacto</h2>
+                <p class="section-intro scroll-animate fade-in-up">¿Interesado en Laguna Bonita? Contáctanos para más información o para agendar una visita.</p>
+                <div class="contacto-flex" style="display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start;">
+                    <div style="flex: 1 1 350px; min-width: 300px;">
+                        <form action="#" method="post" class="contact-form">
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="name">Nombre:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="phone">Teléfono:</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="message">Mensaje:</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu interés en Laguna Bonita..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn scroll-animate fade-in-up">Enviar Consulta</button>
+                        </form>
+                    </div>
+                    <div style="flex: 1 1 350px; min-width: 300px; max-width: 450px;">
+                        <div style="background: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); padding: 20px; margin-bottom: 20px;">
+                            <h3 style="margin-top:0; color:#2c3e50;">Información del Proyecto</h3>
+                            <p style="margin: 0 0 10px 0;"><strong>Ubicación:</strong> Puerto Octay, Región de Los Lagos</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Parcelas:</strong> 5000m² cada una</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Servicios:</strong> Factibilidad de luz y agua</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Contacto:</strong> Felipe Hoffmann</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Teléfono:</strong> <a href="tel:+56994326294">+56 9 9432 6294</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Alba Austral. Todos los derechos reservados.</p>
+    <!-- Footer -->
+    <footer class="site-footer scroll-animate fade-in-up">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Alba Austral</h4>
+                    <p>Invirtiendo en el futuro del sur de Chile. Encuentra tu lugar ideal con nosotros.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#hero">Inicio</a></li>
+                        <li><a href="#caracteristicas">Características</a></li>
+                        <li><a href="#galeria">Galería</a></li>
+                        <li><a href="#masterplan">Masterplan</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contacto Directo</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@albaaustral.cl">info@albaaustral.cl</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+56994326294">+56 9 9432 6294</a></p>
+                </div>
+                <div class="footer-column">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons-footer">
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Teléfono"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Alba Austral. Todos los derechos reservados.</p>
+                <a href="#hero" class="back-to-top" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="../js/main.js"></script>
+    <div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
 </body>
 </html> 

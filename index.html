@@ -39,8 +39,8 @@
         <section id="home" class="full-height-section">
             <div class="slider">
                 <!-- Slide 1: Estero Molgue -->
-                <div class="slide active" id="estero-molgue-slide">
-                    <div class="slide-background" style="background-image: url('img/Slider-principal/estero-molgue-01.jpg');"></div>
+                <div class="slide active" id="estero-molgue-slide" data-project="estero-molgue">
+                    <div class="slide-background" style="background-image: url('img/estero-molgue/01.jpg');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
                         <h2>Estero Molgue</h2>
@@ -51,8 +51,8 @@
                 </div>
 
                 <!-- Slide 2: Laguna Bonita -->
-                <div class="slide" id="laguna-bonita-slide">
-                    <div class="slide-background" style="background-image: url('img/Slider-principal/laguna-bonita-01.jpg');"></div>
+                <div class="slide" id="laguna-bonita-slide" data-project="laguna-bonita">
+                    <div class="slide-background" style="background-image: url('img/laguna-bonita/03.JPG');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
                         <h2>Laguna Bonita</h2>
@@ -62,6 +62,15 @@
                     </div>
                 </div>
                 <!-- Agrega más slides según sea necesario -->
+                
+                <!-- Áreas de click para cambiar imágenes -->
+                <div class="image-navigation">
+                    <div class="nav-area nav-left" data-direction="prev"></div>
+                    <div class="nav-area nav-right" data-direction="next"></div>
+                </div>
+                
+                <!-- Efecto de click ripple -->
+                <div class="click-ripple"></div>
             </div>
 
             <div class="slider-dots"></div>
@@ -73,7 +82,7 @@
                 <h2 class="scroll-animate fade-in-up">Nuestros Proyectos</h2>
                 <p class="section-intro scroll-animate fade-in-up">Descubre los loteos exclusivos que Alba Austral tiene para ofrecerte en el corazón del Sur de Chile.</p>
                 <div class="project-listing">
-                    <div class="project-card scroll-animate fade-in-up">
+                    <div class="project-card scroll-animate fade-in-up" data-project="estero-molgue">
                         <img src="img/Slider-principal/estero-molgue-02.jpg" alt="Estero Molgue" class="project-card-image">
                         <h3>Estero Molgue</h3>
                         <ul>
@@ -84,8 +93,9 @@
                             <li>Proyección de alta plusvalía</li>
                         </ul>
                         <a href="proyectos/estero-molgue.html" class="btn btn-secondary">Más Información</a>
+                        <div class="project-card-ripple"></div>
                     </div>
-                    <div class="project-card scroll-animate fade-in-up">
+                    <div class="project-card scroll-animate fade-in-up" data-project="laguna-bonita">
                         <img src="img/Slider-principal/laguna-bonita-02.jpg" alt="Laguna Bonita" class="project-card-image">
                         <h3>Laguna Bonita</h3>
                         <ul>
@@ -96,6 +106,7 @@
                             <li>Privilegiado entorno cordillerano</li>
                         </ul>
                         <a href="proyectos/laguna-bonita.html" class="btn btn-secondary">Más Información</a>
+                        <div class="project-card-ripple"></div>
                     </div>
                 </div>
             </div>
