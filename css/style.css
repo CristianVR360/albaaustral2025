@@ -1,0 +1,1042 @@
+/* Reset básico y estilos generales */
+html {
+    scroll-behavior: smooth; /* Para navegación suave con anclas */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* height: 100%; quitamos height 100% para permitir scroll de página única */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    overflow-x: hidden; 
+}
+
+body {
+    /* display: flex; Comentado o eliminado para que el footer se posicione correctamente */
+    background-color: #f4f4f4; /* Un fondo general un poco más claro */
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 300px;
+    height: 100vh; 
+    background: rgba(0, 10, 15, 0.9);
+    border-right: none;
+    box-shadow: none;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    position: fixed; 
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out; /* Para la animación móvil */
+}
+
+.logo-container {
+    margin-bottom: 50px;
+    padding: 0;
+    text-align: center;
+}
+
+.logo {
+    max-width: 200px;
+    border: none;
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+}
+
+.logo-subtitle {
+    font-size: 10px;
+    color: #aaa;
+    text-align: left;
+    margin-top: 8px; /* Ajustar según el logo */
+    letter-spacing: 0.5px;
+}
+
+/* --- NAVEGACIÓN SIMPLIFICADA SIN HOVER --- */
+.main-nav {
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav li {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+/* Estilos base para enlaces */
+.main-nav li a {
+    display: block;
+    font-size: 15px;
+    padding: 8px 0 8px 48px;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    transition: none;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+}
+
+/* Línea horizontal */
+.main-nav li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1px;
+    opacity: 0.7;
+    transition: none;
+}
+
+/* Viñeta circular */
+.main-nav li a::before {
+    content: '○';
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: none;
+}
+
+/* Estado activo */
+.main-nav li.active a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 19px;
+    letter-spacing: 0.5px;
+    padding-left: 48px;
+}
+
+.main-nav li.active::before {
+    width: 28px;
+    background: #fff;
+    opacity: 1;
+}
+
+.main-nav li.active a::before {
+    content: '●';
+    color: #fff;
+    font-size: 15px;
+    left: 28px;
+}
+
+/* Línea vertical para elemento activo */
+.main-nav li.active::after { 
+    content: '';
+    position: absolute;
+    left: -20px; 
+    top: 0;
+    bottom: 0;
+    width: 3px; 
+    background-color: #fff; 
+}
+
+/* ELIMINAR COMPLETAMENTE TODOS LOS EFECTOS HOVER */
+.main-nav li:hover,
+.main-nav li:focus,
+.main-nav li a:hover,
+.main-nav li a:focus,
+.main-nav li:hover a,
+.main-nav li:focus a,
+.main-nav li:hover::before,
+.main-nav li:focus::before,
+.main-nav li:hover a::before,
+.main-nav li:focus a::before,
+.main-nav li:hover::after,
+.main-nav li:focus::after {
+    /* No aplicar ningún cambio en hover/focus */
+    all: unset;
+}
+
+/* Restaurar estilos básicos después de all: unset */
+.main-nav li:hover,
+.main-nav li:focus {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.main-nav li:hover a,
+.main-nav li:focus a,
+.main-nav li a:hover,
+.main-nav li a:focus {
+    display: block;
+    font-size: 15px;
+    padding: 8px 0 8px 48px;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    transition: none;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+}
+
+.main-nav li:hover::before,
+.main-nav li:focus::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1px;
+    opacity: 0.7;
+    transition: none;
+}
+
+.main-nav li:hover a::before,
+.main-nav li:focus a::before,
+.main-nav li a:hover::before,
+.main-nav li a:focus::before {
+    content: '○';
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: none;
+}
+
+/* Mantener estilos activos incluso en hover */
+.main-nav li.active:hover a,
+.main-nav li.active:focus a,
+.main-nav li.active a:hover,
+.main-nav li.active a:focus {
+    color: #fff;
+    font-weight: bold;
+    font-size: 19px;
+    letter-spacing: 0.5px;
+    padding-left: 48px;
+}
+
+.main-nav li.active:hover::before,
+.main-nav li.active:focus::before {
+    width: 28px;
+    background: #fff;
+    opacity: 1;
+}
+
+.main-nav li.active:hover a::before,
+.main-nav li.active:focus a::before,
+.main-nav li.active a:hover::before,
+.main-nav li.active a:focus::before {
+    content: '●';
+    color: #fff;
+    font-size: 15px;
+    left: 28px;
+}
+
+.main-nav li.active:hover::after,
+.main-nav li.active:focus::after {
+    content: '';
+    position: absolute;
+    left: -20px; 
+    top: 0;
+    bottom: 0;
+    width: 3px; 
+    background-color: #fff; 
+}
+
+.sidebar-footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 0;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 20px;
+    opacity: 0.85;
+    transition: color 0.3s, opacity 0.3s;
+}
+.social-icons a:hover {
+    color: #bfcad1;
+    opacity: 1;
+}
+
+/* Main Content Area */
+.main-content-area {
+    /* margin-left: 280px;  Quitado, el contenido se expandirá */
+    width: 100%; /* Ocupa todo el ancho */
+    position: relative; 
+}
+
+/* Section Styling */
+.full-height-section {
+    height: 100vh; 
+    position: relative; 
+    overflow: hidden; 
+    /* Esta sección (#home) no necesita padding-left ya que la sidebar es transparente sobre ella */
+}
+
+.page-section {
+    padding: 60px 40px;
+    padding-left: calc(280px + 40px); /* Ancho de la sidebar + padding original */
+    background-color: #fff; 
+    border-bottom: 1px solid #e0e0e0; 
+    box-sizing: border-box; /* Importante para que el padding no aumente el ancho total */
+}
+
+.page-section:nth-child(odd) {
+   /* background-color: #f9f9f9; */
+}
+
+.container { /* El container dentro de .page-section manejará el ancho del contenido */
+    max-width: 960px; 
+    margin: 0 auto; 
+    /* padding-left: 0;  Asegurar que no tenga padding extra si se usa dentro de .page-section con padding */
+}
+
+.page-section h2 {
+    font-size: 36px;
+    color: #2c3e50; /* Un azul oscuro/gris para títulos */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-section .section-intro {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    line-height: 1.7;
+}
+
+/* Home Section (Slider - Ajustes aquí) */
+#home .slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#home .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s;
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: flex-end; 
+}
+
+#home .slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10; 
+}
+
+#home .slide-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+}
+
+#home .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Restaurado a su valor original */
+    z-index: 2;
+}
+
+#home .slide-content {
+    position: relative; 
+    z-index: 3;
+    color: #fff;
+    padding: 40px 60px; 
+    text-align: right; 
+    max-width: 600px; 
+    margin-right: 2%;
+    margin-bottom: 10%; 
+}
+
+#home .slide-content h2 {
+    font-size: 48px;
+    margin-top: 0;
+    margin-bottom: 5px; /* Reducido de 10px */
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff; 
+}
+
+#home .slide-content h3 {
+    font-size: 28px;
+    margin-bottom: 10px; /* Reducido de 15px */
+    font-weight: normal;
+}
+
+#home .slide-content p {
+    font-size: 16px;
+    margin-bottom: 25px; /* Reducido de 30px */
+    line-height: 1.7;
+}
+
+/* Botón General y Botón del Slider (Ver Más) */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    font-size: 14px;
+    border: 2px solid transparent; /* Borde base transparente */
+    cursor: pointer;
+}
+
+/* Estilo específico para el botón del slider "Ver Más" */
+#home .slide-content .btn {
+    background-color: transparent;
+    border-color: #fff; /* Borde blanco */
+    color: #fff;
+    padding: 10px 28px; /* Ajustar padding */
+    font-weight: 600; /* Un poco menos grueso que bold */
+    letter-spacing: 0.5px;
+}
+
+#home .slide-content .btn:hover {
+    background-color: #fff;
+    color: #1c1c1c; /* Color oscuro del sidebar para contraste */
+    transform: translateY(-2px);
+}
+
+/* Botones en otras secciones (ej. formulario, tarjetas de proyecto) */
+.project-card .btn-secondary, /* Para "Más Información" en tarjetas */
+.contact-form .btn { /* Para "Enviar Mensaje" en formulario */
+    background-color: #2c3e50;
+    color: #fff;
+    border-color: #2c3e50; /* Borde del mismo color que el fondo */
+}
+
+.project-card .btn-secondary:hover,
+.contact-form .btn:hover {
+    background-color: #395169;
+    border-color: #395169;
+    color: #fff;
+}
+
+/* Eliminación de Slider Navigation Arrows (se hará en HTML) y nuevos Slider Dots */
+/* #home .slider-navigation { display: none; } No es necesario si se elimina el HTML */
+
+.slider-dots {
+    position: absolute;
+    bottom: 30px; /* Margen inferior base */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px; /* Espacio entre puntos */
+    z-index: 15;
+}
+
+.slider-dots .dot {
+    width: 17px; /* Reducido ~30% de 24px */
+    height: 17px; /* Reducido ~30% de 24px */
+    background-color: #6c757d; /* Dark gray for inactive dots */
+    border-radius: 50%;      /* Puntos redondos */
+    cursor: pointer;
+    padding: 0;               /* Ensure no internal spacing affects shape */
+    border: none;             /* Ensure no border affects shape/size */
+    box-sizing: border-box;   /* Prevent padding/border from altering width/height */
+    flex-shrink: 0;           /* Prevent shrinking in flex container */
+    transition: background-color 0.3s ease; /* Re-enabled transition */
+}
+
+.slider-dots .dot.active {
+    background-color: #fff; /* White for active dot */
+}
+
+/* Proyectos Section */
+.project-listing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Espacio entre tarjetas */
+    justify-content: center;
+}
+
+.project-card {
+    background-color: #f9f9f9; /* Un fondo ligeramente diferente para la tarjeta */
+    border-radius: 0; /* Sin puntas redondeadas */
+    overflow: hidden; /* Para que la imagen respete el border-radius */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: calc(50% - 15px); /* Dos tarjetas por fila, ajustando por el gap */
+    max-width: 450px; /* Máximo ancho para cada tarjeta */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.project-card-image {
+    width: 100%;
+    height: 220px; /* Altura fija para la imagen */
+    object-fit: cover; /* Para que la imagen cubra sin distorsionarse */
+}
+
+.project-card h3 {
+    font-size: 24px;
+    color: #333;
+    margin: 20px 20px 10px 20px;
+}
+
+.project-card p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    padding: 0 20px 10px 20px; /* Reducir padding inferior si la lista sigue */
+    flex-grow: 1; 
+}
+
+.project-card ul {
+    list-style: none;
+    padding: 0 20px 15px 20px; /* Padding similar al del párrafo */
+    margin: 0;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    flex-grow: 1; /* Para que la lista ocupe el espacio y el botón quede abajo */
+}
+
+.project-card ul li {
+    margin-bottom: 8px; /* Espacio entre ítems de la lista */
+    padding-left: 18px; /* Espacio para un pseudo-elemento (ej. ✓) */
+    position: relative;
+}
+
+.project-card ul li::before {
+    content: "✓"; /* Icono de check simple */
+    position: absolute;
+    left: 0;
+    top: 1px; /* Ajuste fino de posición vertical */
+    color: #2c3e50; /* Color de acento, igual que los botones */
+    font-weight: bold;
+}
+
+.project-card .btn-secondary {
+    background-color: #2c3e50; /* Color del botón secundario */
+    color: #fff;
+    align-self: flex-start; /* Alinear el botón a la izquierda dentro de la tarjeta */
+    margin: 0 20px 20px 20px;
+}
+
+.project-card .btn-secondary:hover {
+    background-color: #395169;
+}
+
+/* Contacto Section */
+.contact-form {
+    max-width: 700px;
+    margin: 0 auto; /* Centrar el formulario */
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: #2c3e50; /* Color de acento al enfocar */
+    outline: none;
+}
+
+/* Ken Burns Zoom Effect for Active Slider Background */
+@keyframes kenBurnsZoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Sutil zoom in */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#home .slide.active .slide-background {
+    animation: kenBurnsZoom 30s ease-in-out infinite; /* Aumentada duración de 15s a 30s */
+}
+
+/* Scroll Animation Base Styles */
+.scroll-animate {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.fade-in {
+    /* Solo necesita opacity y la transición base */
+}
+
+.scroll-animate.fade-in-up {
+    transform: translateY(30px);
+}
+
+.scroll-animate.fade-in-left {
+    transform: translateX(-30px);
+}
+
+.scroll-animate.fade-in-right {
+    transform: translateX(30px);
+}
+
+/* Cuando el elemento es visible */
+.scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+}
+
+/* Ajustes para el contenido existente para que las animaciones se apliquen correctamente */
+.page-section h2,
+.page-section .section-intro,
+.project-card,
+.contact-form .form-group,
+.contact-form .btn {
+    /* Asegurar que los elementos a animar tengan la clase .scroll-animate */
+    /* La opacidad y transform iniciales vendrán de .scroll-animate */
+}
+
+/* Footer Styling */
+.site-footer {
+    background-color: #1c1c1c; /* Color oscuro similar a la sidebar */
+    color: #a0a0a0; /* Color de texto base para el footer */
+    padding: 50px 0; /* Padding vertical, el horizontal lo da el .container */
+    margin-top: 0; /* Quitar cualquier margen superior que pueda tener por defecto */
+    border-top: 3px solid #2c3e50; /* Un borde superior distintivo */
+}
+
+.site-footer .container {
+    max-width: 1140px; /* Ancho máximo un poco mayor para el footer */
+    margin: 0 auto;
+    padding: 0 20px; /* Padding horizontal para el contenido del footer */
+}
+
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px; /* Espacio entre columnas */
+    margin-bottom: 40px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px; /* Ancho mínimo para cada columna antes de que se envuelvan */
+    margin-bottom: 20px; /* Espacio inferior para columnas en móvil */
+}
+
+.footer-column h4 {
+    color: #e0e0e0; /* Títulos de columna más claros */
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #2c3e50; /* Color de acento para la línea debajo del título */
+}
+
+.footer-column p,
+.footer-column ul li {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column a {
+    color: #a0a0a0; /* Color de enlace base */
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-column a:hover,
+.footer-column a:focus {
+    color: #fff; /* Color de enlace al hacer hover */
+    padding-left: 5px; /* Pequeño indentado al hacer hover */
+}
+
+.footer-column .social-icons-footer {
+    display: flex;
+    gap: 15px; /* Espacio entre iconos sociales */
+}
+
+.footer-column .social-icons-footer a {
+    color: #a0a0a0;
+    font-size: 20px; /* Tamaño de iconos sociales en footer */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-column .social-icons-footer a:hover,
+.footer-column .social-icons-footer a:focus {
+    color: #fff;
+    transform: translateY(-2px); /* Efecto de elevación */
+    padding-left: 0; /* Anular el padding-left del hover general de enlaces */
+}
+
+.footer-column p i {
+    margin-right: 8px; /* Espacio entre icono y texto en info de contacto */
+    color: #e0e0e0; /* Iconos de contacto un poco más claros */
+}
+
+.footer-bottom {
+    border-top: 1px solid #333; /* Separador sutil */
+    padding-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Para que se adapte en pantallas pequeñas */
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 13px;
+    flex-basis: 100%; /* Ocupa todo el ancho inicialmente */
+    text-align: center; /* Centrado por defecto */
+    margin-bottom: 15px; /* Espacio para el botón en móvil */
+}
+
+.back-to-top {
+    display: inline-block;
+    background-color: #2c3e50; /* Color de acento */
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    line-height: 40px; /* Centrar el icono verticalmente */
+    text-align: center;
+    /* border-radius: 50%; Quitamos border-radius por diseño cuadrado */
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    position: relative; /* Para posible ajuste fino si es necesario */
+}
+
+.back-to-top:hover {
+    background-color: #395169; /* Un poco más oscuro al hacer hover */
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Ajustes responsivos para el Footer */
+@media (min-width: 768px) { /* En pantallas más grandes, copyright a la izquierda, botón a la derecha */
+    .footer-bottom p {
+        flex-basis: auto; /* Permite que ambos elementos compartan espacio */
+        text-align: left;
+        margin-bottom: 0;
+    }
+    .footer-bottom {
+        justify-content: space-between;
+        padding-top: 20px; /* Añadir un poco de padding si el margen del grid se reduce mucho */
+    }
+
+    /* Footer minimalista en desktop */
+    .site-footer {
+        padding: 25px 0; /* Reducir padding vertical significativamente */
+    }
+
+    .footer-grid {
+        justify-content: center; /* Centrar la única columna visible */
+        margin-bottom: 0; /* Eliminar margen inferior ya que habrá menos contenido */
+    }
+
+    .footer-grid .footer-column:nth-child(1) {
+        flex-basis: 100%; /* La primera columna ocupa todo el ancho */
+        max-width: 600px; /* O un ancho máximo que consideres apropiado para el eslogan */
+        margin-bottom: 0; /* Quitar margen inferior si es la única visible */
+        text-align: center; /* Centrar el contenido de la columna */
+    }
+
+    .footer-grid .footer-column:nth-child(1) h4 {
+        /* Si el h4 necesita centrarse explícitamente después de quitar el ::after o si tiene márgenes automáticos */
+        /* No debería ser necesario si el text-align: center del padre funciona */
+    }
+
+    .footer-grid .footer-column:nth-child(2), /* Ocultar Navegación */
+    .footer-grid .footer-column:nth-child(3), /* Ocultar Contacto Directo */
+    .footer-grid .footer-column:nth-child(4) { /* Ocultar Síguenos (la columna entera) */
+        display: none;
+    }
+    /* Quitar la línea de debajo del título de la primera columna si se ve redundante */
+    .footer-grid .footer-column:nth-child(1) h4::after {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) { /* Columnas del footer en stack */
+    .footer-grid {
+        flex-direction: column;
+        align-items: center; /* Centrar columnas en móvil */
+        text-align: center; /* Centrar texto dentro de columnas */
+    }
+    .footer-column {
+        min-width: 100%; /* Ocupar todo el ancho */
+        margin-bottom: 30px;
+    }
+    .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%); /* Centrar la línea debajo del título */
+    }
+    .footer-column .social-icons-footer {
+        justify-content: center; /* Centrar iconos sociales */
+    }
+     .footer-column ul {
+        text-align: center;
+    }
+    .footer-bottom {
+        justify-content: center;
+    }
+}
+
+/* Mobile Navigation Toggle Button */
+.mobile-nav-toggle {
+    display: none; /* Oculto en escritorio */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001; /* Encima de la sidebar */
+    background: rgba(28, 28, 28, 0.7);
+    color: #fff;
+    border: none;
+    padding: 10px 12px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-nav-toggle:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) { /* Punto de quiebre intermedio */
+    .sidebar {
+        width: 240px; /* Sidebar un poco más pequeña */
+        background-color: rgba(28, 28, 28, 0.9); /* Ligeramente menos transparente si es necesario */
+    }
+    .page-section {
+        padding-left: calc(240px + 30px); /* Ajustar padding */
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    /* ... (otros ajustes de 992px si son necesarios) ... */
+}
+
+@media (max-width: 768px) { /* Móvil */
+    .sidebar {
+        transform: translateX(-100%); /* Oculta por defecto fuera de la pantalla */
+        width: 280px; /* Puede ser un ancho fijo o porcentaje para móvil */
+        background-color: rgba(28, 28, 28, 0.95); /* Más opaca en móvil para legibilidad */
+        backdrop-filter: blur(8px); 
+        -webkit-backdrop-filter: blur(8px);
+    }
+    .sidebar.sidebar-open {
+        transform: translateX(0); /* Muestra la sidebar */
+    }
+
+    .mobile-nav-toggle {
+        display: block; /* Muestra el botón hamburguesa */
+    }
+
+    .page-section {
+        padding-left: 40px; /* Padding normal cuando la sidebar está oculta */
+        /* O padding-left: 20px; o lo que se necesite para móvil */
+    }
+    /* Cuando la sidebar esté abierta en móvil, podrías querer empujar el contenido 
+       o poner un overlay. Por ahora, la sidebar se superpondrá. */
+
+    /* ... (Otros ajustes de 768px existentes como .main-nav li.active::after, etc.) ... */
+    .main-nav li.active::after {
+        display: none; 
+    }
+    .main-content-area {
+        /* margin-left: 0; Ya no se usa margin-left globalmente */
+        width: 100%;
+    }
+    .logo { /* Estilos para la <img> si se usa en móvil */
+        max-width: 150px; 
+        width: auto;
+        height: auto;
+        background-color: transparent; 
+    }
+    /* .logo-placeholder { Estilos para el placeholder en móvil 
+        font-size: 20px;
+        padding: 15px 20px;
+        border-width: 1px;
+    } */
+    #home .slide-content {
+        padding: 20px 25px; 
+        max-width: calc(100% - 50px); /* Ajustado para ocupar más ancho */
+        margin-left: auto; /* Para alinear a la derecha con max-width */
+        margin-right: 15px; /* Adjusted from 25px to be closer to the right edge */
+        margin-bottom: 80px; 
+        text-align: right; /* Contenido del slider alineado a la derecha en móvil */
+    }
+    #home .slide-content h2 {
+        font-size: 30px; /* Ajustar tamaño de fuente */
+    }
+    #home .slide-content h3 {
+        font-size: 18px; /* Ajustar tamaño de fuente */
+    }
+    #home .slide-content p {
+        font-size: 14px; /* Ajustar tamaño de fuente */
+        margin-bottom: 20px;
+    }
+    
+    #home .slide-content .btn {
+        width: auto; /* No más ancho completo */
+        padding: 8px 20px; /* Más pequeño y modesto */
+        font-size: 13px;
+        float: right; /* Para asegurar alineación derecha si el texto anterior no lo fuerza */
+        clear: both; /* Para asegurar que esté debajo de otros elementos flotantes si los hubiera */
+        margin-top: 10px; /* Espacio por si el párrafo es corto */
+    }
+
+    .slider-dots {
+        bottom: 40px; 
+        gap: 12px; /* Ajustado el gap para puntos más pequeños */
+    }
+    .slider-dots .dot {
+        width: 14px; /* Reducido ~30% de 20px */
+        height: 14px; /* Reducido ~30% de 20px */
+    }
+    /* ... (resto de ajustes de 768px) ... */
+
+    .project-listing {
+        /* No se necesitan cambios aquí si .project-card se ajusta bien */
+    }
+
+    .project-card {
+        width: 100%; 
+        max-width: none; 
+        margin-left: auto; 
+        margin-right: auto;
+        /* border-radius: 0; Ya no es necesario aquí si se eliminó globalmente */
+    }
+    /* ... (resto de ajustes de 768px) ... */
+}
+
+/* Estilos para el Cursor Mágico (básicos) */
+.mouse-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden; /* Se hace visible con JS */
+    z-index: 9999; /* Muy alto para estar sobre todo */
+    transition: opacity 0.3s ease, transform 0.1s ease; /* Transición suave para el movimiento y hover */
+}
+
+.cursor-inner {
+    width: 8px;
+    height: 8px;
+    background-color: #fff; /* Color blanco para el punto interior */
+    /* background-color: var(--accent-color, #007bff);  Podría usar un color de acento si estuviera definido */
+}
+
+.cursor-outer {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff; /* Borde blanco para el círculo exterior */
+    /* border: 1px solid var(--accent-color, #007bff); */
+    opacity: 0.7;
+}
+
+.cursor-inner.cursor-hover,
+.cursor-outer.cursor-hover {
+    opacity: 0.5;
+}
+
+.cursor-inner.cursor-hover {
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+.cursor-outer.cursor-hover {
+    transform: translate(-50%, -50%) scale(1.8);
+    border-width: 1px;
+} 

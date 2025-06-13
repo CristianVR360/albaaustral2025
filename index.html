@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alba Austral - Desarrollo Inmobiliario</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <button class="mobile-nav-toggle" aria-label="Abrir navegación" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="img/logo_alba_austral.png" alt="Alba Austral Logo" class="logo">
+            <!-- <div class="logo-placeholder">ALBA AUSTRAL</div> -->
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="social-icons">
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Teléfono"><i class="fas fa-phone"></i></a>
+            </div>
+            <!-- Contact info (email) removed -->
+        </div>
+    </aside>
+
+    <main class="main-content-area">
+        <!-- Home Section (Slider) -->
+        <section id="home" class="full-height-section">
+            <div class="slider">
+                <!-- Slide 1: Estero Molgue -->
+                <div class="slide active" id="estero-molgue-slide">
+                    <div class="slide-background" style="background-image: url('img/Slider-principal/estero-molgue-01.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Estero Molgue</h2>
+                        <h3>Río Bueno, Región de Los Ríos</h3>
+                        <p>Exclusividad y naturaleza a solo 30 min de Osorno: tu inversión estratégica en Río Bueno.</p>
+                        <a href="proyectos/estero-molgue.html" class="btn">Ver Más</a>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Laguna Bonita -->
+                <div class="slide" id="laguna-bonita-slide">
+                    <div class="slide-background" style="background-image: url('img/Slider-principal/laguna-bonita-01.jpg');"></div>
+                    <div class="overlay"></div>
+                    <div class="slide-content">
+                        <h2>Laguna Bonita</h2>
+                        <h3>Puerto Octay, Región de Los Lagos</h3>
+                        <p>Tu santuario privado entre lagos y montañas: Laguna Bonita te espera.</p>
+                        <a href="proyectos/laguna-bonita.html" class="btn">Ver Más</a>
+                    </div>
+                </div>
+                <!-- Agrega más slides según sea necesario -->
+            </div>
+
+            <div class="slider-dots"></div>
+        </section>
+
+        <!-- Proyectos Section -->
+        <section id="proyectos" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Nuestros Proyectos</h2>
+                <p class="section-intro scroll-animate fade-in-up">Descubre los loteos exclusivos que Alba Austral tiene para ofrecerte en el corazón del Sur de Chile.</p>
+                <div class="project-listing">
+                    <div class="project-card scroll-animate fade-in-up">
+                        <img src="img/Slider-principal/estero-molgue-02.jpg" alt="Estero Molgue" class="project-card-image">
+                        <h3>Estero Molgue</h3>
+                        <ul>
+                            <li>Parcelas de 5000m²</li>
+                            <li>Factibilidad de luz y agua</li>
+                            <li>Excelente accesibilidad</li>
+                            <li>A solo 30 minutos de Osorno</li>
+                            <li>Proyección de alta plusvalía</li>
+                        </ul>
+                        <a href="proyectos/estero-molgue.html" class="btn btn-secondary">Más Información</a>
+                    </div>
+                    <div class="project-card scroll-animate fade-in-up">
+                        <img src="img/Slider-principal/laguna-bonita-02.jpg" alt="Laguna Bonita" class="project-card-image">
+                        <h3>Laguna Bonita</h3>
+                        <ul>
+                            <li>Parcelas de 5000m²</li>
+                            <li>Factibilidad de luz y agua</li>
+                            <li>Excelente accesibilidad</li>
+                            <li>Acceso directo a Laguna Bonita</li>
+                            <li>Privilegiado entorno cordillerano</li>
+                        </ul>
+                        <a href="proyectos/laguna-bonita.html" class="btn btn-secondary">Más Información</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section -->
+        <section id="contacto" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Contacto</h2>
+                <p class="section-intro scroll-animate fade-in-up">Ponte en contacto con nosotros para más información sobre nuestros proyectos o para agendar una visita.</p>
+                <div class="contacto-flex" style="display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start;">
+                    <div style="flex: 1 1 350px; min-width: 300px;">
+                        <form action="#" method="post" class="contact-form">
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="name">Nombre:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group scroll-animate fade-in-up">
+                                <label for="message">Mensaje:</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn scroll-animate fade-in-up">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                    <div style="flex: 1 1 350px; min-width: 300px; max-width: 450px;">
+                        <div style="background: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); padding: 20px; margin-bottom: 20px;">
+                            <h3 style="margin-top:0; color:#2c3e50;">Información de Contacto</h3>
+                            <p style="margin: 0 0 10px 0;"><strong>Teléfono:</strong> <a href="tel:+56994326294">+56 9 9432 6294</a></p>
+                            <p style="margin: 0 0 10px 0;"><strong>Dirección:</strong> Francisco Bilbao 1129, oficina 512, Edificio Bicentenario, Osorno</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Grupo:</strong> Hoffmann</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Contacto:</strong> Felipe Hoffmann</p>
+                        </div>
+                        <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.08);">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3130.1234567890123!2d-73.135123!3d-40.573890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9623bc34d1234abc%3A0x123456789abc!2sFrancisco%20Bilbao%201129%2C%20Osorno!5e0!3m2!1ses-419!2scl!4v1234567890" width="100%" height="260" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- Footer movido aquí, fuera del <main> -->
+    <footer class="site-footer scroll-animate fade-in-up">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Alba Austral</h4>
+                    <p>Invirtiendo en el futuro del sur de Chile. Encuentra tu lugar ideal con nosotros.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contacto Directo</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@albaaustral.cl">info@albaaustral.cl</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+569XXXXXXXX">+56 9 XXXX XXXX</a></p>
+                </div>
+                <div class="footer-column">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons-footer">
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Teléfono"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Alba Austral. Todos los derechos reservados.</p>
+                <a href="#home" class="back-to-top" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    <div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
+</body>
+</html>
