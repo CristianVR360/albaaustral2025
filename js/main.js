@@ -1,6 +1,5 @@
 // Main JavaScript file for Alba Austral website
 
-// Ejemplo de función (puedes borrar esto o modificarlo)
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Navigation Toggle
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
@@ -29,42 +28,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Slider functionality with Dots Navigation
+    // Slider functionality
     const slides = document.querySelectorAll('#home .slide, #hero .slide');
     const dotsContainer = document.querySelector('#home .slider-dots, #hero .slider-dots');
     let currentSlide = 0;
-    let dots = []; // Array to store dot elements
+    let dots = [];
+    let autoSlideInterval = null;
 
-    // Check if we're on a project page
+    // Check if we're on a project page or main page
     const isProjectPage = window.location.pathname.includes('/proyectos/');
+    const isMainPage = !isProjectPage;
 
-    // Image navigation for each project (only for main page)
-    const projectImages = {
-        'estero-molgue': [
-            'img/estero-molgue/01.jpg',
-            'img/estero-molgue/10.jpg',
-            'img/estero-molgue/02.jpg'
-        ],
-        'laguna-bonita': [
-            'img/laguna-bonita/03.JPG',
-            'img/laguna-bonita/08.JPG',
-            'img/laguna-bonita/30.JPG'
-        ]
-    };
-
-    // Current image index for each project (only for main page)
-    let currentImageIndex = {
-        'estero-molgue': 0,
-        'laguna-bonita': 0
-    };
-
-    function showSlide(index) {
+    function showSlide(index, withFade = false) {
+        if (slides.length === 0) return;
+        
+        const previousSlide = document.querySelector('#home .slide.active, #hero .slide.active');
+        
         slides.forEach((slide, i) => {
             slide.classList.remove('active');
             if (i === index) {
-                slide.classList.add('active');
+                if (withFade && previousSlide && previousSlide !== slide) {
+                    // Apply fade effect
+                    slide.style.opacity = '0';
+                    slide.classList.add('active');
+                    
+                    setTimeout(() => {
+                        slide.style.transition = 'opacity 0.8s ease-in-out';
+                        slide.style.opacity = '1';
+                    }, 50);
+                } else {
+                    slide.classList.add('active');
+                    slide.style.opacity = '1';
+                }
             }
         });
+        
         // Update active dot
         if (dots.length > 0) {
             dots.forEach((dot, i) => {
@@ -74,164 +72,171 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
-        currentSlide = index; // Ensure currentSlide is updated
-    }
-
-    function changeProjectImage(direction) {
-        // Only change images on main page, change slides on project pages
-        if (isProjectPage) {
-            changeSlide(direction);
-            return;
-        }
-
-        const activeSlide = document.querySelector('#home .slide.active');
-        if (!activeSlide) return;
-
-        const project = activeSlide.getAttribute('data-project');
-        const images = projectImages[project];
-        if (!images || images.length === 0) return;
-
-        const slideBackground = activeSlide.querySelector('.slide-background');
-        if (!slideBackground) return;
-
-        // Calculate new image index
-        let newIndex = currentImageIndex[project];
-        if (direction === 'next') {
-            newIndex = (newIndex + 1) % images.length;
-        } else if (direction === 'prev') {
-            newIndex = (newIndex - 1 + images.length) % images.length;
-        }
-
-        // Update current index
-        currentImageIndex[project] = newIndex;
-
-        // Add changing class for animation
-        slideBackground.classList.add('changing');
-
-        // Change background image at the peak of the animation (50% of 800ms = 400ms)
-        setTimeout(() => {
-            slideBackground.style.backgroundImage = `url('${images[newIndex]}')`;
-        }, 400);
-        
-        // Remove changing class after animation completes
-        setTimeout(() => {
-            slideBackground.classList.remove('changing');
-        }, 800);
-    }
-
-    function changeSlide(direction) {
-        // Navigate between slides on project pages
-        let newIndex = currentSlide;
-        if (direction === 'next') {
-            newIndex = (currentSlide + 1) % slides.length;
-        } else if (direction === 'prev') {
-            newIndex = (currentSlide - 1 + slides.length) % slides.length;
-        }
-        showSlide(newIndex);
-    }
-
-    function createRippleEffect(x, y) {
-        const ripple = document.querySelector('.click-ripple');
-        if (!ripple) return;
-
-        // Remove any existing animation
-        ripple.classList.remove('animate');
-        
-        // Position the ripple at click coordinates
-        const size = 100;
-        ripple.style.width = size + 'px';
-        ripple.style.height = size + 'px';
-        ripple.style.left = (x - size / 2) + 'px';
-        ripple.style.top = (y - size / 2) + 'px';
-
-        // Trigger animation
-        setTimeout(() => {
-            ripple.classList.add('animate');
-        }, 10);
-
-        // Remove animation class after animation completes
-        setTimeout(() => {
-            ripple.classList.remove('animate');
-        }, 800);
+        currentSlide = index;
     }
 
     function createDots() {
-        if (!dotsContainer) return;
+        if (!dotsContainer || slides.length === 0) return;
+        
+        // Clear existing dots
+        dotsContainer.innerHTML = '';
+        dots = [];
+        
         slides.forEach((_, i) => {
-            const dot = document.createElement('button'); // Using button for accessibility
+            const dot = document.createElement('button');
             dot.classList.add('dot');
             dot.setAttribute('aria-label', `Ir al slide ${i + 1}`);
             dot.addEventListener('click', () => {
-                showSlide(i);
+                if (isMainPage) {
+                    // Stop auto-slide temporarily when user interacts
+                    clearInterval(autoSlideInterval);
+                    showSlide(i, true);
+                    // Restart auto-slide after 10 seconds
+                    setTimeout(startAutoSlide, 10000);
+                } else {
+                    showSlide(i);
+                }
             });
             dotsContainer.appendChild(dot);
-            dots.push(dot); // Store dot reference
+            dots.push(dot);
         });
     }
 
-    // Initialize image navigation
-    function initImageNavigation() {
-        const navAreas = document.querySelectorAll('.nav-area');
+    function startAutoSlide() {
+        if (!isMainPage || slides.length <= 1) return;
         
-        navAreas.forEach(area => {
-            area.addEventListener('click', (e) => {
-                const direction = area.getAttribute('data-direction');
-                const sliderElement = document.querySelector('#home .slider, #hero .slider');
-                
-                if (!sliderElement) return;
-                
-                // Create ripple effect at click position
-                createRippleEffect(e.clientX - sliderElement.getBoundingClientRect().left, 
-                                 e.clientY - sliderElement.getBoundingClientRect().top);
-                
-                // Change image or slide depending on page type
-                changeProjectImage(direction);
-            });
-
-            // Add touch support for mobile
-            area.addEventListener('touchstart', (e) => {
-                e.preventDefault(); // Prevent default touch behavior
-                const direction = area.getAttribute('data-direction');
-                const touch = e.touches[0];
-                const sliderElement = document.querySelector('#home .slider, #hero .slider');
-                
-                if (!sliderElement) return;
-                
-                // Create ripple effect at touch position
-                createRippleEffect(touch.clientX - sliderElement.getBoundingClientRect().left, 
-                                 touch.clientY - sliderElement.getBoundingClientRect().top);
-                
-                // Change image or slide depending on page type
-                changeProjectImage(direction);
-            });
-        });
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(() => {
+            const nextIndex = (currentSlide + 1) % slides.length;
+            showSlide(nextIndex, true);
+        }, 5000);
     }
 
+    // Initialize slider
     if (slides.length > 0) {
         createDots();
-        showSlide(currentSlide); // Show initial slide and set first dot active
-        initImageNavigation(); // Initialize image navigation
+        showSlide(0);
         
-        // Optional: Auto-slide (uncomment to enable)
-        // let autoSlideInterval = setInterval(() => {
-        //     let next = (currentSlide + 1) % slides.length;
-        //     showSlide(next);
-        // }, 7000);
+        if (isMainPage) {
+            startAutoSlide();
+            
+            // Pause auto-slide on hover
+            const sliderElement = document.querySelector('#home .slider');
+            if (sliderElement) {
+                sliderElement.addEventListener('mouseenter', () => {
+                    clearInterval(autoSlideInterval);
+                });
+                sliderElement.addEventListener('mouseleave', () => {
+                    startAutoSlide();
+                });
+            }
+        }
+    }
 
-        // Optional: Pause auto-slide on hover over slider (if auto-slide is enabled)
-        // const sliderElement = document.querySelector('#home .slider, #hero .slider');
-        // if (sliderElement && autoSlideInterval) { 
-        //     sliderElement.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-        //     sliderElement.addEventListener('mouseleave', () => {
-        //         autoSlideInterval = setInterval(() => {
-        //             let next = (currentSlide + 1) % slides.length;
-        //             showSlide(next);
-        //         }, 7000);
-        //     });
-        // }
+    // Interactive Distance Map
+    function initDistanceMap() {
+        const distanceSections = document.querySelectorAll('#ubicacion');
+        
+        distanceSections.forEach(section => {
+            const mapContainer = section.querySelector('.distance-map');
+            if (!mapContainer) return;
+            
+            const points = mapContainer.querySelectorAll('.distance-point');
+            
+            points.forEach(point => {
+                point.addEventListener('mouseenter', () => {
+                    point.classList.add('active');
+                    const tooltip = point.querySelector('.distance-tooltip');
+                    if (tooltip) {
+                        tooltip.style.opacity = '1';
+                        tooltip.style.transform = 'translateY(-10px)';
+                    }
+                });
+                
+                point.addEventListener('mouseleave', () => {
+                    point.classList.remove('active');
+                    const tooltip = point.querySelector('.distance-tooltip');
+                    if (tooltip) {
+                        tooltip.style.opacity = '0';
+                        tooltip.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                point.addEventListener('click', () => {
+                    // Add click animation
+                    point.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        point.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+    }
 
-    } else {
-        if(dotsContainer) dotsContainer.style.display = 'none'; // Hide dots container if no slides
+    // Adaptive Cursor
+    function initAdaptiveCursor() {
+        const cursorInner = document.querySelector('.cursor-inner');
+        const cursorOuter = document.querySelector('.cursor-outer');
+        
+        if (!cursorInner || !cursorOuter) return;
+        
+        function updateCursorColor(e) {
+            const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+            
+            if (!elementUnderCursor) return;
+            
+            const computedStyle = window.getComputedStyle(elementUnderCursor);
+            const backgroundColor = computedStyle.backgroundColor;
+            const backgroundImage = computedStyle.backgroundImage;
+            
+            // Check if element has a background image or dark background
+            const hasBackgroundImage = backgroundImage && backgroundImage !== 'none';
+            const isLightBackground = backgroundColor === 'rgba(0, 0, 0, 0)' || 
+                                    backgroundColor === 'transparent' || 
+                                    backgroundColor.includes('255, 255, 255') ||
+                                    backgroundColor.includes('rgb(255, 255, 255)');
+            
+            if (hasBackgroundImage || !isLightBackground) {
+                // Dark background or image - use light cursor
+                cursorInner.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                cursorOuter.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+            } else {
+                // Light background - use dark cursor
+                cursorInner.style.backgroundColor = 'rgba(44, 62, 80, 0.8)';
+                cursorOuter.style.borderColor = 'rgba(44, 62, 80, 0.3)';
+            }
+        }
+        
+        // Update cursor position and color
+        window.addEventListener('mousemove', (e) => {
+            cursorOuter.style.left = e.clientX + 'px';
+            cursorOuter.style.top = e.clientY + 'px';
+            cursorInner.style.left = e.clientX + 'px';
+            cursorInner.style.top = e.clientY + 'px';
+            
+            updateCursorColor(e);
+        });
+        
+        // Hover effects
+        const hoverSelectors = "a:not(.main-nav a), .cursor-pointer, button:not(.main-nav button), input[type='submit'], .slider-dots .dot, .project-card .btn, .contact-form button[type='submit'], .distance-point";
+        
+        document.addEventListener('mouseenter', (e) => {
+            if (e.target.matches(hoverSelectors)) {
+                cursorInner.classList.add('cursor-hover');
+                cursorOuter.classList.add('cursor-hover');
+            }
+        }, true);
+        
+        document.addEventListener('mouseleave', (e) => {
+            if (e.target.matches(hoverSelectors)) {
+                cursorInner.classList.remove('cursor-hover');
+                cursorOuter.classList.remove('cursor-hover');
+            }
+        }, true);
+        
+        // Make cursors visible
+        cursorInner.style.visibility = 'visible';
+        cursorOuter.style.visibility = 'visible';
     }
 
     // Active navigation link based on scroll position (Scrollspy)
@@ -282,52 +287,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize Grax Effects if jQuery is available
-    if (typeof jQuery !== 'undefined') {
-        jQuery(document).ready(function() {
-            // grax_tm_ripple_alba_austral(); // Ripple effect call commented out as per user request
-            grax_tm_cursor(); // Call cursor function
-        });
-    } else {
-        console.warn('jQuery is not loaded. Ripple and Magic Cursor effects cannot be initialized.');
-    }
-
     // Project Cards Click Functionality
     function initProjectCardsClick() {
         const projectCards = document.querySelectorAll('.project-card');
         
         projectCards.forEach(card => {
             card.addEventListener('click', (e) => {
-                // Prevent default if clicking on the button
                 if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
-                    return; // Let the button handle its own click
+                    return;
                 }
                 
                 const project = card.getAttribute('data-project');
                 const ripple = card.querySelector('.project-card-ripple');
                 
                 if (ripple) {
-                    // Create ripple effect
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
                     
-                    // Position and size the ripple
                     const size = 100;
                     ripple.style.width = size + 'px';
                     ripple.style.height = size + 'px';
                     ripple.style.left = (x - size / 2) + 'px';
                     ripple.style.top = (y - size / 2) + 'px';
                     
-                    // Remove existing animation
                     ripple.classList.remove('animate');
                     
-                    // Trigger animation
                     setTimeout(() => {
                         ripple.classList.add('animate');
                     }, 10);
                     
-                    // Navigate after ripple starts
                     setTimeout(() => {
                         if (project === 'estero-molgue') {
                             window.location.href = 'proyectos/estero-molgue.html';
@@ -346,9 +335,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (contactButton) {
             contactButton.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent form submission for demo
+                e.preventDefault();
                 
-                // Create temporary ripple element
                 const ripple = document.createElement('div');
                 ripple.className = 'project-card-ripple animate';
                 
@@ -356,7 +344,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
-                // Position and size the ripple
                 const size = 80;
                 ripple.style.width = size + 'px';
                 ripple.style.height = size + 'px';
@@ -364,30 +351,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 ripple.style.top = (y - size / 2) + 'px';
                 ripple.style.position = 'absolute';
                 
-                // Add to button (make sure button has relative positioning)
                 contactButton.style.position = 'relative';
                 contactButton.style.overflow = 'hidden';
                 contactButton.appendChild(ripple);
                 
-                // Remove ripple after animation
                 setTimeout(() => {
                     if (ripple.parentNode) {
                         ripple.parentNode.removeChild(ripple);
                     }
                 }, 600);
                 
-                // Here you would normally submit the form
                 console.log('Contact form submitted with ripple effect!');
             });
         }
     }
 
-    // Initialize all click functionalities
+    // Initialize all functionalities
+    initDistanceMap();
+    initAdaptiveCursor();
     initProjectCardsClick();
     initContactButtonClick();
-}); 
-
-
+});
 
 // ---------------------------------------------------- //
 // --------------- Grax Specific Functions ------------ //
