@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">ESTERO MOLGUE</div>
+        </div>
+    </div>
     <button class="mobile-nav-toggle" aria-label="Abrir navegación" aria-expanded="false">
         <i class="fas fa-bars"></i>
     </button>
@@ -47,6 +54,7 @@
                     <div class="slide-background" style="background-image: url('../img/estero-molgue/01.jpg');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
+                        <img src="../img/estero-molgue/logo_estero-molgue.png" alt="Estero Molgue Logo" style="max-width: 200px; margin-bottom: 20px;">
                         <h2>Inversión Segura en Zona de Crecimiento</h2>
                         <h3>Ubicación Estratégica en Los Ríos</h3>
                         <p>En el corazón de una región con alta actividad comercial e industrial. Tu oportunidad de inversión en un sector de desarrollo sostenido.</p>
@@ -59,6 +67,7 @@
                     <div class="slide-background" style="background-image: url('../img/estero-molgue/02.jpg');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
+                        <img src="../img/estero-molgue/logo_estero-molgue.png" alt="Estero Molgue Logo" style="max-width: 200px; margin-bottom: 20px;">
                         <h2>Oportunidad de Inversión Inteligente</h2>
                         <h3>Sector de Alta Proyección</h3>
                         <p>Una inversión inteligente en la zona de mayor actividad comercial del sur de Chile. Proximidad a importantes centros industriales y logísticos.</p>
@@ -71,6 +80,7 @@
                     <div class="slide-background" style="background-image: url('../img/estero-molgue/10.jpg');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
+                        <img src="../img/estero-molgue/logo_estero-molgue.png" alt="Estero Molgue Logo" style="max-width: 200px; margin-bottom: 20px;">
                         <h2>Parcelas de Gran Extensión</h2>
                         <h3>5000m² de Libertad Total</h3>
                         <p>Amplios terrenos que ofrecen múltiples posibilidades de desarrollo. En una zona con creciente demanda y valorización constante.</p>
@@ -83,6 +93,7 @@
                     <div class="slide-background" style="background-image: url('../img/estero-molgue/03.jpg');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
+                        <img src="../img/estero-molgue/logo_estero-molgue.png" alt="Estero Molgue Logo" style="max-width: 200px; margin-bottom: 20px;">
                         <h2>Conectividad y Accesibilidad</h2>
                         <h3>Estratégicamente Ubicado</h3>
                         <p>A 25 minutos del aeropuerto y con acceso directo a la Ruta 5. Donde la tranquilidad rural se combina con excelente conectividad.</p>
@@ -91,7 +102,7 @@
                 </div>
             </div>
             
-            <!-- Dots fuera del slider pero alineados con el contenido -->
+            <!-- Slider dots outside slider -->
             <div class="slider-dots"></div>
         </section>
 
@@ -141,6 +152,15 @@
                 <h2 class="scroll-animate fade-in-up">Ubicación Estratégica</h2>
                 <p class="section-intro scroll-animate fade-in-up">Estero Molgue está estratégicamente ubicado en una zona de alta actividad comercial e industrial de Los Ríos, con excelente conectividad y acceso a servicios.</p>
                 <div class="distance-map scroll-animate fade-in-up">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6283.784654297947!2d-73.17832682385747!3d-40.19651654075089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961fcc18c6c39f91%3A0x5037b1f07d0eb670!2sEstero%20Molgue%2C%20R%C3%ADo%20Bueno%2C%20Los%20R%C3%ADos!5e0!3m2!1ses!2scl!4v1697234567890!5m2!1ses!2scl" 
+                            width="100%" 
+                            height="500" 
+                            style="border:0; border-radius: 8px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    
                     <div class="project-center">
                         <div class="project-marker">
                             <i class="fas fa-home"></i>
@@ -159,50 +179,6 @@
                         </div>
                     </div>
                     
-                    <div class="distance-point" style="top: 15%; left: 70%;" data-location="valdivia">
-                        <div class="point-marker">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Valdivia</h4>
-                            <p>1h (80 km)</p>
-                            <small>Capital regional</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 25%; left: 20%;" data-location="aeropuerto">
-                        <div class="point-marker">
-                            <i class="fas fa-plane"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Aeropuerto Osorno</h4>
-                            <p>25 min (35 km)</p>
-                            <small>Conectividad aérea nacional e internacional</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 60%; left: 25%;" data-location="lago-ranco">
-                        <div class="point-marker">
-                            <i class="fas fa-water"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Lago Ranco</h4>
-                            <p>25 min (35 km)</p>
-                            <small>Recreación y naturaleza</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 80%; left: 60%;" data-location="puerto-montt">
-                        <div class="point-marker">
-                            <i class="fas fa-ship"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Puerto Montt</h4>
-                            <p>1h 45min (141 km)</p>
-                            <small>Puerto principal</small>
-                        </div>
-                    </div>
-                    
                     <div class="distance-point" style="top: 45%; left: 15%;" data-location="la-union">
                         <div class="point-marker">
                             <i class="fas fa-industry"></i>
@@ -210,59 +186,124 @@
                         <div class="distance-tooltip">
                             <h4>La Unión</h4>
                             <p>10 min (10 km)</p>
-                            <small>Centro de desarrollo empresarial - Colun, Forestales, Piscicultura</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 35%; left: 10%;" data-location="ruta-5">
-                        <div class="point-marker">
-                            <i class="fas fa-road"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Ruta 5 Sur</h4>
-                            <p>Acceso directo</p>
-                            <small>Acceso directo a corredor comercial</small>
+                            <small>Centro empresarial</small>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Galería Section -->
+        <!-- Galería Section with Slider -->
         <section id="galeria" class="page-section">
             <div class="container">
                 <h2 class="scroll-animate fade-in-up">Galería de Fotos</h2>
                 <p class="section-intro scroll-animate fade-in-up">Explora la belleza natural de Estero Molgue a través de nuestra galería fotográfica.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/01.jpg" alt="Estero Molgue - Vista 1" class="gallery-image">
+                <div class="gallery-slider scroll-animate fade-in-up">
+                    <div class="gallery-slides">
+                        <div class="gallery-slide active">
+                            <img src="../img/estero-molgue/01.jpg" alt="Estero Molgue - Vista 1">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/02.jpg" alt="Estero Molgue - Vista 2">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/03.jpg" alt="Estero Molgue - Vista 3">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/04.jpg" alt="Estero Molgue - Vista 4">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/05.jpg" alt="Estero Molgue - Vista 5">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/06.jpg" alt="Estero Molgue - Vista 6">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/07.jpg" alt="Estero Molgue - Vista 7">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/08.jpg" alt="Estero Molgue - Vista 8">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/09.jpg" alt="Estero Molgue - Vista 9">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/10.jpg" alt="Estero Molgue - Vista 10">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/11.jpg" alt="Estero Molgue - Vista 11">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/12.jpg" alt="Estero Molgue - Vista 12">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/13.jpg" alt="Estero Molgue - Vista 13">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/14.jpg" alt="Estero Molgue - Vista 14">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/15.jpg" alt="Estero Molgue - Vista 15">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/estero-molgue/16.jpg" alt="Estero Molgue - Vista 16">
+                        </div>
                     </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/02.jpg" alt="Estero Molgue - Vista 2" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/03.jpg" alt="Estero Molgue - Vista 3" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/04.jpg" alt="Estero Molgue - Vista 4" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/05.jpg" alt="Estero Molgue - Vista 5" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/06.jpg" alt="Estero Molgue - Vista 6" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/07.jpg" alt="Estero Molgue - Vista 7" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/08.jpg" alt="Estero Molgue - Vista 8" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/09.jpg" alt="Estero Molgue - Vista 9" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/estero-molgue/10.jpg" alt="Estero Molgue - Vista 10" class="gallery-image">
+                    <button class="gallery-nav gallery-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-nav gallery-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="gallery-thumbnails">
+                        <div class="gallery-thumb active">
+                            <img src="../img/estero-molgue/01.jpg" alt="Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/02.jpg" alt="Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/03.jpg" alt="Thumbnail 3">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/04.jpg" alt="Thumbnail 4">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/05.jpg" alt="Thumbnail 5">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/06.jpg" alt="Thumbnail 6">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/07.jpg" alt="Thumbnail 7">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/08.jpg" alt="Thumbnail 8">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/09.jpg" alt="Thumbnail 9">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/10.jpg" alt="Thumbnail 10">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/11.jpg" alt="Thumbnail 11">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/12.jpg" alt="Thumbnail 12">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/13.jpg" alt="Thumbnail 13">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/14.jpg" alt="Thumbnail 14">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/15.jpg" alt="Thumbnail 15">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/estero-molgue/16.jpg" alt="Thumbnail 16">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -344,6 +385,46 @@
                             <p style="margin: 0 0 10px 0;"><strong>Servicios:</strong> Factibilidad de luz y agua</p>
                             <p style="margin: 0 0 10px 0;"><strong>Contacto:</strong> Felipe Hoffmann</p>
                             <p style="margin: 0 0 10px 0;"><strong>Teléfono:</strong> <a href="tel:+56994326294">+56 9 9432 6294</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Preguntas Frecuentes</h2>
+                <p class="section-intro scroll-animate fade-in-up">Resuelve tus dudas sobre Estero Molgue y encuentra toda la información que necesitas.</p>
+                <div class="faq-section scroll-animate fade-in-up">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ¿Existe algún plan de desarrollo comunitario para el proyecto?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Áreas comunes de preservación ecológica y posible desarrollo de senderos y zonas de picnic, manteniendo la privacidad de cada parcela.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ¿Qué tipo de conectividad a internet está disponible?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Cobertura 4G móvil, con evaluación de opciones de internet satelital para residentes.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ¿Es posible practicar pesca con mosca en los esteros cercanos?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Sí, los esteros Molgue y el río Bueno son excelentes para truchas. Se recomienda respetar vedas y permisos.
+                            </div>
                         </div>
                     </div>
                 </div>

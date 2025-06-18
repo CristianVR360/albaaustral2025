@@ -1,6 +1,46 @@
 // Main JavaScript file for Alba Austral website
 
+// Loading Screen functionality
+function initLoadingScreen() {
+    const loadingScreen = document.querySelector('.loading-screen');
+    const body = document.body;
+    
+    if (loadingScreen) {
+        // Check if we've already loaded to prevent duplicate animations
+        if (sessionStorage.getItem('siteLoaded')) {
+            loadingScreen.style.display = 'none';
+            body.classList.add('loaded');
+            return;
+        }
+        
+        // Hide loading screen after page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    // Only trigger entrance animations on first load and desktop
+                    if (window.innerWidth > 1080) {
+                        body.classList.add('loaded');
+                    }
+                    // Mark as loaded in session storage
+                    sessionStorage.setItem('siteLoaded', 'true');
+                }, 500);
+            }, 1000); // Show loading for at least 1 second
+        });
+    }
+}
+
+// Initialize loading screen first
+initLoadingScreen();
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Add pointer cursor to navigation and logo
+    const navElements = document.querySelectorAll('.main-nav a, .logo');
+    navElements.forEach(element => {
+        element.style.cursor = 'pointer';
+    });
+
     // Mobile Navigation Toggle
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const sidebar = document.querySelector('.sidebar');
@@ -28,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Slider functionality
+    // Enhanced Slider functionality with improved fade effect
     const slides = document.querySelectorAll('#home .slide, #hero .slide');
     const dotsContainer = document.querySelector('#home .slider-dots, #hero .slider-dots');
     let currentSlide = 0;
@@ -44,21 +84,41 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const previousSlide = document.querySelector('#home .slide.active, #hero .slide.active');
         
+        // Enhanced fade effect for both background and content
         slides.forEach((slide, i) => {
-            slide.classList.remove('active');
             if (i === index) {
+                slide.classList.add('active');
+                
                 if (withFade && previousSlide && previousSlide !== slide) {
-                    // Apply fade effect
+                    // Fade in new slide
                     slide.style.opacity = '0';
-                    slide.classList.add('active');
+                    slide.style.visibility = 'visible';
                     
+                    // Fade out previous slide
+                    if (previousSlide) {
+                        previousSlide.style.transition = 'opacity 0.8s ease-in-out';
+                        previousSlide.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            previousSlide.classList.remove('active');
+                            previousSlide.style.visibility = 'hidden';
+                        }, 800);
+                    }
+                    
+                    // Fade in current slide
                     setTimeout(() => {
                         slide.style.transition = 'opacity 0.8s ease-in-out';
                         slide.style.opacity = '1';
-                    }, 50);
+                    }, 100);
                 } else {
-                    slide.classList.add('active');
                     slide.style.opacity = '1';
+                    slide.style.visibility = 'visible';
+                }
+            } else {
+                slide.classList.remove('active');
+                if (!withFade) {
+                    slide.style.opacity = '0';
+                    slide.style.visibility = 'hidden';
                 }
             }
         });
@@ -94,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Restart auto-slide after 10 seconds
                     setTimeout(startAutoSlide, 10000);
                 } else {
-                    showSlide(i);
+                    showSlide(i, true);
                 }
             });
             dotsContainer.appendChild(dot);
@@ -109,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         autoSlideInterval = setInterval(() => {
             const nextIndex = (currentSlide + 1) % slides.length;
             showSlide(nextIndex, true);
-        }, 5000);
+        }, 8000); // Changed from 5000 to 8000 (8 seconds)
     }
 
     // Initialize slider
@@ -131,6 +191,104 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
+    }
+
+    // Gallery Slider functionality
+    function initGallerySlider() {
+        const galleries = document.querySelectorAll('.gallery-slider');
+        
+        galleries.forEach(gallery => {
+            const slides = gallery.querySelectorAll('.gallery-slide');
+            const thumbnails = gallery.querySelector('.gallery-thumbnails');
+            const prevBtn = gallery.querySelector('.gallery-prev');
+            const nextBtn = gallery.querySelector('.gallery-next');
+            let currentGallerySlide = 0;
+
+            function showGallerySlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                
+                const thumbs = thumbnails.querySelectorAll('.gallery-thumb');
+                thumbs.forEach((thumb, i) => {
+                    thumb.classList.toggle('active', i === index);
+                });
+                
+                // Scroll thumbnail into view
+                const activeThumb = thumbs[index];
+                if (activeThumb && thumbnails) {
+                    activeThumb.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                }
+                
+                currentGallerySlide = index;
+            }
+
+            // Navigation buttons
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const newIndex = (currentGallerySlide - 1 + slides.length) % slides.length;
+                    showGallerySlide(newIndex);
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const newIndex = (currentGallerySlide + 1) % slides.length;
+                    showGallerySlide(newIndex);
+                });
+            }
+
+            // Thumbnail clicks - Fixed functionality
+            if (thumbnails) {
+                const thumbs = thumbnails.querySelectorAll('.gallery-thumb');
+                thumbs.forEach((thumb, index) => {
+                    thumb.addEventListener('click', () => {
+                        showGallerySlide(index);
+                    });
+                });
+            }
+
+            // Initialize first slide
+            if (slides.length > 0) {
+                showGallerySlide(0);
+            }
+        });
+    }
+
+    // FAQ Accordion functionality
+    function initFAQAccordion() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        otherAnswer.style.maxHeight = '0';
+                    }
+                });
+                
+                // Toggle current item
+                if (isActive) {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = '0';
+                } else {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
     }
 
     // Interactive Distance Map
@@ -371,6 +529,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initAdaptiveCursor();
     initProjectCardsClick();
     initContactButtonClick();
+    initGallerySlider();
+    initFAQAccordion();
 });
 
 // ---------------------------------------------------- //

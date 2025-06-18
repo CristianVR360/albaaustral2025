@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">LAGUNA BONITA</div>
+        </div>
+    </div>
     <button class="mobile-nav-toggle" aria-label="Abrir navegación" aria-expanded="false">
         <i class="fas fa-bars"></i>
     </button>
@@ -47,6 +54,7 @@
                     <div class="slide-background" style="background-image: url('../img/laguna-bonita/03.JPG');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
+                        <img src="../img/laguna-bonita/logo_laguna-bonita.png" alt="Laguna Bonita Logo" style="max-width: 200px; margin-bottom: 20px;">
                         <h2>Tu Reserva Natural Privada</h2>
                         <h3>Exclusividad Natural Intocada</h3>
                         <p>Laguna de reserva natural sin contaminantes. Solo motores eléctricos. Tu refugio exclusivo donde la naturaleza permanece intocada.</p>
@@ -59,6 +67,7 @@
                     <div class="slide-background" style="background-image: url('../img/laguna-bonita/08.JPG');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
+                        <img src="../img/laguna-bonita/logo_laguna-bonita.png" alt="Laguna Bonita Logo" style="max-width: 200px; margin-bottom: 20px;">
                         <h2>Acceso a Maravillas Cordilleranas</h2>
                         <h3>Ruta Interlagos Exclusiva</h3>
                         <p>Ruta Interlagos te conecta con Rupanco, Puyehue, Ranco y Llanquihue. Vistas que solo unos pocos privilegiados pueden llamar suyas.</p>
@@ -71,6 +80,7 @@
                     <div class="slide-background" style="background-image: url('../img/laguna-bonita/30.JPG');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
+                        <img src="../img/laguna-bonita/logo_laguna-bonita.png" alt="Laguna Bonita Logo" style="max-width: 200px; margin-bottom: 20px;">
                         <h2>Exclusividad que Se Siente</h2>
                         <h3>No Es Para Todos</h3>
                         <p>No es para todos. Es para quienes buscan lo auténtico, lo preservado, lo verdaderamente exclusivo en Puerto Octay.</p>
@@ -83,6 +93,7 @@
                     <div class="slide-background" style="background-image: url('../img/laguna-bonita/15.JPG');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
+                        <img src="../img/laguna-bonita/logo_laguna-bonita.png" alt="Laguna Bonita Logo" style="max-width: 200px; margin-bottom: 20px;">
                         <h2>Inversión en Distinción</h2>
                         <h3>Escenario Exclusivo</h3>
                         <p>Porque los momentos más valiosos merecen el escenario más exclusivo. Tu futuro distinguido comienza aquí.</p>
@@ -91,7 +102,7 @@
                 </div>
             </div>
             
-            <!-- Dots fuera del slider pero alineados con el contenido -->
+            <!-- Slider dots outside slider -->
             <div class="slider-dots"></div>
         </section>
 
@@ -141,6 +152,15 @@
                 <h2 class="scroll-animate fade-in-up">Paraíso Natural Exclusivo</h2>
                 <p class="section-intro scroll-animate fade-in-up">Laguna Bonita está ubicada en el corazón de la Región de Los Lagos, con acceso directo a las maravillas naturales más exclusivas del sur de Chile.</p>
                 <div class="distance-map scroll-animate fade-in-up">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3068.8765432109876!2d-72.89523482345678!3d-40.87654321098765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9614abcdef123456%3A0x789012345abcdef0!2sLaguna%20Bonita%2C%20Puerto%20Octay%2C%20Los%20Lagos!5e0!3m2!1ses!2scl!4v1697234567891!5m2!1ses!2scl" 
+                            width="100%" 
+                            height="500" 
+                            style="border:0; border-radius: 8px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    
                     <div class="project-center">
                         <div class="project-marker">
                             <i class="fas fa-home"></i>
@@ -159,61 +179,6 @@
                         </div>
                     </div>
                     
-                    <div class="distance-point" style="top: 15%; left: 70%;" data-location="osorno">
-                        <div class="point-marker">
-                            <i class="fas fa-city"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Osorno</h4>
-                            <p>1h (72 km)</p>
-                            <small>Centro urbano principal</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 25%; left: 80%;" data-location="puerto-varas">
-                        <div class="point-marker">
-                            <i class="fas fa-mountain"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Puerto Varas</h4>
-                            <p>1h 15min (96 km)</p>
-                            <small>Destino turístico</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 30%; left: 85%;" data-location="puerto-montt">
-                        <div class="point-marker">
-                            <i class="fas fa-ship"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Puerto Montt</h4>
-                            <p>1h 30min (120 km)</p>
-                            <small>Puerto principal</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 15%; left: 75%;" data-location="aeropuerto-osorno">
-                        <div class="point-marker">
-                            <i class="fas fa-plane"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Aeropuerto Osorno</h4>
-                            <p>1h 5min (72 km)</p>
-                            <small>Conectividad aérea</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 35%; left: 70%;" data-location="frutillar">
-                        <div class="point-marker">
-                            <i class="fas fa-music"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Frutillar</h4>
-                            <p>1h (68 km)</p>
-                            <small>Centro cultural</small>
-                        </div>
-                    </div>
-                    
                     <div class="distance-point" style="top: 40%; left: 75%;" data-location="llanquihue">
                         <div class="point-marker">
                             <i class="fas fa-water"></i>
@@ -225,17 +190,6 @@
                         </div>
                     </div>
                     
-                    <div class="distance-point" style="top: 25%; left: 60%;" data-location="volcan-osorno">
-                        <div class="point-marker">
-                            <i class="fas fa-volcano"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Volcán Osorno</h4>
-                            <p>35 min (30 km)</p>
-                            <small>Actividades invierno-verano</small>
-                        </div>
-                    </div>
-                    
                     <div class="distance-point" style="top: 10%; left: 40%;" data-location="lago-rupanco">
                         <div class="point-marker">
                             <i class="fas fa-fish"></i>
@@ -243,59 +197,226 @@
                         <div class="distance-tooltip">
                             <h4>Lago Rupanco</h4>
                             <p>15 min (20 km)</p>
-                            <small>Marina, pesca deportiva, caza</small>
-                        </div>
-                    </div>
-                    
-                    <div class="distance-point" style="top: 45%; left: 80%;" data-location="lago-llanquihue">
-                        <div class="point-marker">
-                            <i class="fas fa-swimming-pool"></i>
-                        </div>
-                        <div class="distance-tooltip">
-                            <h4>Lago Llanquihue</h4>
-                            <p>20 min (30 km)</p>
-                            <small>Acceso directo</small>
+                            <small>Marina y pesca deportiva</small>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Galería Section -->
+        <!-- Galería Section with Slider -->
         <section id="galeria" class="page-section">
             <div class="container">
                 <h2 class="scroll-animate fade-in-up">Galería de Fotos</h2>
                 <p class="section-intro scroll-animate fade-in-up">Descubre la majestuosidad de Laguna Bonita a través de nuestra galería fotográfica.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/03.JPG" alt="Laguna Bonita - Vista 1" class="gallery-image">
+                <div class="gallery-slider scroll-animate fade-in-up">
+                    <div class="gallery-slides">
+                        <div class="gallery-slide active">
+                            <img src="../img/laguna-bonita/01.JPG" alt="Laguna Bonita - Vista 1">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/02.JPG" alt="Laguna Bonita - Vista 2">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/03.JPG" alt="Laguna Bonita - Vista 3">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/04.JPG" alt="Laguna Bonita - Vista 4">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/05.JPG" alt="Laguna Bonita - Vista 5">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/06.JPG" alt="Laguna Bonita - Vista 6">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/070.JPG" alt="Laguna Bonita - Vista 7">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/08.JPG" alt="Laguna Bonita - Vista 8">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/09.JPG" alt="Laguna Bonita - Vista 9">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/10.JPG" alt="Laguna Bonita - Vista 10">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/100.JPG" alt="Laguna Bonita - Vista 100">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/11.JPG" alt="Laguna Bonita - Vista 11">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/12.JPG" alt="Laguna Bonita - Vista 12">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/14.JPG" alt="Laguna Bonita - Vista 14">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/15.JPG" alt="Laguna Bonita - Vista 15">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/16.JPG" alt="Laguna Bonita - Vista 16">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/17.JPG" alt="Laguna Bonita - Vista 17">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/18.JPG" alt="Laguna Bonita - Vista 18">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/19.JPG" alt="Laguna Bonita - Vista 19">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/20.JPG" alt="Laguna Bonita - Vista 20">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/21.JPG" alt="Laguna Bonita - Vista 21">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/22.JPG" alt="Laguna Bonita - Vista 22">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/23.jpg" alt="Laguna Bonita - Vista 23">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/24.jpg" alt="Laguna Bonita - Vista 24">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/25.jpg" alt="Laguna Bonita - Vista 25">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/26.jpg" alt="Laguna Bonita - Vista 26">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/27.jpg" alt="Laguna Bonita - Vista 27">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/28.jpg" alt="Laguna Bonita - Vista 28">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/29.jpg" alt="Laguna Bonita - Vista 29">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/30.jpg" alt="Laguna Bonita - Vista 30">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/31.jpg" alt="Laguna Bonita - Vista 31">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/32.jpg" alt="Laguna Bonita - Vista 32">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../img/laguna-bonita/33.JPG" alt="Laguna Bonita - Vista 33">
+                        </div>
                     </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/08.JPG" alt="Laguna Bonita - Vista 2" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/15.JPG" alt="Laguna Bonita - Vista 3" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/22.JPG" alt="Laguna Bonita - Vista 4" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/12.JPG" alt="Laguna Bonita - Vista 5" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/30.JPG" alt="Laguna Bonita - Vista 6" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/18.JPG" alt="Laguna Bonita - Vista 7" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/25.JPG" alt="Laguna Bonita - Vista 8" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/07.JPG" alt="Laguna Bonita - Vista 9" class="gallery-image">
-                    </div>
-                    <div class="gallery-item scroll-animate fade-in-up">
-                        <img src="../img/laguna-bonita/14.JPG" alt="Laguna Bonita - Vista 10" class="gallery-image">
+                    <button class="gallery-nav gallery-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-nav gallery-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="gallery-thumbnails">
+                        <div class="gallery-thumb active">
+                            <img src="../img/laguna-bonita/01.JPG" alt="Thumbnail 1">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/02.JPG" alt="Thumbnail 2">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/03.JPG" alt="Thumbnail 3">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/04.JPG" alt="Thumbnail 4">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/05.JPG" alt="Thumbnail 5">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/06.JPG" alt="Thumbnail 6">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/070.JPG" alt="Thumbnail 7">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/08.JPG" alt="Thumbnail 8">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/09.JPG" alt="Thumbnail 9">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/10.JPG" alt="Thumbnail 10">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/100.JPG" alt="Thumbnail 100">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/11.JPG" alt="Thumbnail 11">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/12.JPG" alt="Thumbnail 12">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/14.JPG" alt="Thumbnail 14">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/15.JPG" alt="Thumbnail 15">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/16.JPG" alt="Thumbnail 16">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/17.JPG" alt="Thumbnail 17">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/18.JPG" alt="Thumbnail 18">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/19.JPG" alt="Thumbnail 19">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/20.JPG" alt="Thumbnail 20">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/21.JPG" alt="Thumbnail 21">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/22.JPG" alt="Thumbnail 22">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/23.jpg" alt="Thumbnail 23">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/24.jpg" alt="Thumbnail 24">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/25.jpg" alt="Thumbnail 25">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/26.jpg" alt="Thumbnail 26">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/27.jpg" alt="Thumbnail 27">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/28.jpg" alt="Thumbnail 28">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/29.jpg" alt="Thumbnail 29">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/30.jpg" alt="Thumbnail 30">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/31.jpg" alt="Thumbnail 31">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/32.jpg" alt="Thumbnail 32">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="../img/laguna-bonita/33.JPG" alt="Thumbnail 33">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -377,6 +498,56 @@
                             <p style="margin: 0 0 10px 0;"><strong>Servicios:</strong> Factibilidad de luz y agua</p>
                             <p style="margin: 0 0 10px 0;"><strong>Contacto:</strong> Felipe Hoffmann</p>
                             <p style="margin: 0 0 10px 0;"><strong>Teléfono:</strong> <a href="tel:+56994326294">+56 9 9432 6294</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="page-section">
+            <div class="container">
+                <h2 class="scroll-animate fade-in-up">Preguntas Frecuentes</h2>
+                <p class="section-intro scroll-animate fade-in-up">Resuelve tus dudas sobre Laguna Bonita y encuentra toda la información que necesitas.</p>
+                <div class="faq-section scroll-animate fade-in-up">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ¿Qué tipo de actividades recreativas se pueden realizar en Laguna Bonita?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Kayak, pesca deportiva, senderismo, observación de aves y paseos en bote, todo en un entorno natural.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ¿Cómo es el acceso en invierno a las parcelas?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                La ruta U-91 está pavimentada y transitable todo el año. El último 1 km es camino consolidado en buen estado incluso en temporada invernal.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ¿Existen restricciones para construir en las parcelas?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Reglamento de construcción: viviendas hasta 2 pisos, con restricciones de materiales y diseño que armonicen con el paisaje.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ¿Qué servicios básicos están disponibles en el proyecto?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Factibilidad de agua potable (vertientes naturales) y electricidad de la red local.
+                            </div>
                         </div>
                     </div>
                 </div>
