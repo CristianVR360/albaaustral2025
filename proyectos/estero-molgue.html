@@ -6,6 +6,47 @@
     <title>Estero Molgue - Alba Austral</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Prevent scroll to gallery on page load */
+        html {
+            scroll-behavior: auto !important;
+        }
+        html:not(.page-loaded) {
+            overflow: hidden;
+            height: 100vh;
+        }
+        html:not(.page-loaded) body {
+            overflow: hidden;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+    <script>
+        // Immediate scroll prevention
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        
+        // Enable scrolling after page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.documentElement.classList.add('page-loaded');
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.left = '';
+                document.body.style.right = '';
+                document.body.style.overflow = '';
+                document.body.style.height = '';
+                document.documentElement.style.overflow = '';
+                document.documentElement.style.height = '';
+            }, 500);
+        });
+    </script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -90,7 +131,7 @@
 
                 <!-- Slide 4 -->
                 <div class="slide" id="info-slide-4">
-                    <div class="slide-background" style="background-image: url('../img/estero-molgue/03.jpg');"></div>
+                    <div class="slide-background" style="background-image: url('../img/estero-molgue/08.jpg');"></div>
                     <div class="overlay"></div>
                     <div class="slide-content">
                         <img src="../img/estero-molgue/logo_estero-molgue.png" alt="Estero Molgue Logo" style="max-width: 200px; margin-bottom: 20px;">
@@ -111,36 +152,66 @@
             <div class="container">
                 <h2 class="scroll-animate fade-in-up">Características del Proyecto</h2>
                 <p class="section-intro scroll-animate fade-in-up">Estero Molgue ofrece una combinación única de ubicación estratégica, servicios garantizados y potencial de inversión.</p>
-                <div class="features-grid">
-                    <div class="feature-item scroll-animate fade-in-up">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h3>Parcelas de 5000m²</h3>
-                        <p>Amplios terrenos que te permiten desarrollar el proyecto de tus sueños con total libertad.</p>
+                <div class="features-accordion">
+                    <div class="feature-accordion-item scroll-animate fade-in-up">
+                        <button class="feature-question">
+                            <span><i class="fas fa-map-marked-alt feature-icon"></i>Parcelas de 5000m²</span>
+                        </button>
+                        <div class="feature-answer">
+                            <div class="feature-answer-content">
+                                Amplios terrenos que te permiten desarrollar el proyecto de tus sueños con total libertad.
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-item scroll-animate fade-in-up">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Factibilidad de Servicios</h3>
-                        <p>Luz y agua garantizados para todas las parcelas del proyecto.</p>
+                    <div class="feature-accordion-item scroll-animate fade-in-up">
+                        <button class="feature-question">
+                            <span><i class="fas fa-bolt feature-icon"></i>Factibilidad de Servicios</span>
+                        </button>
+                        <div class="feature-answer">
+                            <div class="feature-answer-content">
+                                Luz y agua garantizados para todas las parcelas del proyecto.
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-item scroll-animate fade-in-up">
-                        <i class="fas fa-road"></i>
-                        <h3>Excelente Accesibilidad</h3>
-                        <p>Acceso directo desde ruta principal, facilitando la conectividad.</p>
+                    <div class="feature-accordion-item scroll-animate fade-in-up">
+                        <button class="feature-question">
+                            <span><i class="fas fa-road feature-icon"></i>Excelente Accesibilidad</span>
+                        </button>
+                        <div class="feature-answer">
+                            <div class="feature-answer-content">
+                                Acceso directo desde ruta principal, facilitando la conectividad.
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-item scroll-animate fade-in-up">
-                        <i class="fas fa-clock"></i>
-                        <h3>30 min de Osorno</h3>
-                        <p>Ubicación estratégica que combina tranquilidad rural con cercanía urbana.</p>
+                    <div class="feature-accordion-item scroll-animate fade-in-up">
+                        <button class="feature-question">
+                            <span><i class="fas fa-clock feature-icon"></i>30 min de Osorno</span>
+                        </button>
+                        <div class="feature-answer">
+                            <div class="feature-answer-content">
+                                Ubicación estratégica que combina tranquilidad rural con cercanía urbana.
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-item scroll-animate fade-in-up">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Alta Plusvalía</h3>
-                        <p>Proyección de crecimiento sostenido en una zona de desarrollo emergente.</p>
+                    <div class="feature-accordion-item scroll-animate fade-in-up">
+                        <button class="feature-question">
+                            <span><i class="fas fa-chart-line feature-icon"></i>Alta Plusvalía</span>
+                        </button>
+                        <div class="feature-answer">
+                            <div class="feature-answer-content">
+                                Proyección de crecimiento sostenido en una zona de desarrollo emergente.
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-item scroll-animate fade-in-up">
-                        <i class="fas fa-leaf"></i>
-                        <h3>Entorno Natural</h3>
-                        <p>Rodeado de naturaleza prístina y paisajes únicos de la Región de Los Ríos.</p>
+                    <div class="feature-accordion-item scroll-animate fade-in-up">
+                        <button class="feature-question">
+                            <span><i class="fas fa-leaf feature-icon"></i>Entorno Natural</span>
+                        </button>
+                        <div class="feature-answer">
+                            <div class="feature-answer-content">
+                                Rodeado de naturaleza prístina y paisajes únicos de la Región de Los Ríos.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,10 +223,10 @@
                 <h2 class="scroll-animate fade-in-up">Ubicación Estratégica</h2>
                 <p class="section-intro scroll-animate fade-in-up">Estero Molgue está estratégicamente ubicado en una zona de alta actividad comercial e industrial de Los Ríos, con excelente conectividad y acceso a servicios.</p>
                 <div class="distance-map scroll-animate fade-in-up">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6283.784654297947!2d-73.17832682385747!3d-40.19651654075089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961fcc18c6c39f91%3A0x5037b1f07d0eb670!2sEstero%20Molgue%2C%20R%C3%ADo%20Bueno%2C%20Los%20R%C3%ADos!5e0!3m2!1ses!2scl!4v1697234567890!5m2!1ses!2scl" 
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d419430.8932323456!2d-73.2!3d-40.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961fcc18c6c39f91%3A0x5037b1f07d0eb670!2sEstero%20Molgue%2C%20R%C3%ADo%20Bueno%2C%20Los%20R%C3%ADos!5e0!3m2!1ses!2scl!4v1697234567890!5m2!1ses!2scl&z=8&disableDefaultUI=false&zoomControl=false&mapTypeControl=false&scaleControl=false&streetViewControl=false&rotateControl=false&fullscreenControl=false" 
                             width="100%" 
                             height="500" 
-                            style="border:0; border-radius: 8px;" 
+                            style="border:0; border-radius: 8px; pointer-events: none;" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
@@ -168,7 +239,7 @@
                         </div>
                     </div>
                     
-                    <div class="distance-point" style="top: 20%; left: 30%;" data-location="osorno">
+                    <div class="distance-point" style="top: 25%; left: 35%;" data-location="osorno">
                         <div class="point-marker">
                             <i class="fas fa-building"></i>
                         </div>
@@ -179,7 +250,7 @@
                         </div>
                     </div>
                     
-                    <div class="distance-point" style="top: 45%; left: 15%;" data-location="la-union">
+                    <div class="distance-point" style="top: 55%; left: 25%;" data-location="la-union">
                         <div class="point-marker">
                             <i class="fas fa-industry"></i>
                         </div>
@@ -187,6 +258,28 @@
                             <h4>La Unión</h4>
                             <p>10 min (10 km)</p>
                             <small>Centro empresarial</small>
+                        </div>
+                    </div>
+                    
+                    <div class="distance-point" style="top: 15%; left: 60%;" data-location="puerto-varas">
+                        <div class="point-marker">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <div class="distance-tooltip">
+                            <h4>Puerto Varas</h4>
+                            <p>50 min (55 km)</p>
+                            <small>Destino turístico</small>
+                        </div>
+                    </div>
+                    
+                    <div class="distance-point" style="top: 70%; left: 45%;" data-location="valdivia">
+                        <div class="point-marker">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="distance-tooltip">
+                            <h4>Valdivia</h4>
+                            <p>45 min (50 km)</p>
+                            <small>Centro universitario</small>
                         </div>
                     </div>
                 </div>
@@ -399,11 +492,31 @@
                 <div class="faq-section scroll-animate fade-in-up">
                     <div class="faq-item">
                         <button class="faq-question">
+                            ¿Qué servicios básicos están disponibles en el proyecto?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Factibilidad de luz y agua garantizada para todas las parcelas del proyecto.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
                             ¿Existe algún plan de desarrollo comunitario para el proyecto?
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-content">
                                 Áreas comunes de preservación ecológica y posible desarrollo de senderos y zonas de picnic, manteniendo la privacidad de cada parcela.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ¿Qué opciones de medios de pago y financiamiento están disponibles?
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Opciones flexibles previa negociación. Contáctanos para evaluar la mejor alternativa según tus necesidades.
                             </div>
                         </div>
                     </div>
@@ -419,11 +532,11 @@
                     </div>
                     <div class="faq-item">
                         <button class="faq-question">
-                            ¿Es posible practicar pesca con mosca en los esteros cercanos?
+                            ¿Es posible practicar pesca deportiva en la zona?
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-content">
-                                Sí, los esteros Molgue y el río Bueno son excelentes para truchas. Se recomienda respetar vedas y permisos.
+                                Sí, el río Bueno es excelente para la pesca deportiva de truchas. Se recomienda respetar vedas y permisos correspondientes.
                             </div>
                         </div>
                     </div>

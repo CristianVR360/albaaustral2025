@@ -1,15 +1,72 @@
 // Main JavaScript file for Alba Austral website
 
+// Immediate scroll prevention for project pages
+if (window.location.pathname.includes('/proyectos/')) {
+    // Prevent any scroll restoration
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    
+    // Force scroll to top immediately
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
+    
+    // Add loaded class to html to enable scrolling
+    document.documentElement.classList.add('loaded');
+    
+    // Override any automatic scroll behavior
+    const originalScrollTo = window.scrollTo;
+    const originalScrollBy = window.scrollBy;
+    
+    window.scrollTo = function(x, y) {
+        if (y !== 0) return; // Only allow scroll to top
+        originalScrollTo.call(this, x, y);
+    };
+    
+    window.scrollBy = function(x, y) {
+        return; // Prevent any scroll by
+    };
+    
+    // Restore normal scrolling after page is loaded
+    setTimeout(() => {
+        window.scrollTo = originalScrollTo;
+        window.scrollBy = originalScrollBy;
+    }, 3000);
+}
+
 // Loading Screen functionality
 function initLoadingScreen() {
     const loadingScreen = document.querySelector('.loading-screen');
     const body = document.body;
     
     if (loadingScreen) {
+        // Force scroll to top on project pages
+        if (window.location.pathname.includes('/proyectos/')) {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        }
+        
         // Check if we've already loaded to prevent duplicate animations
         if (sessionStorage.getItem('siteLoaded')) {
             loadingScreen.style.display = 'none';
-            body.classList.add('loaded');
+            // Only add loaded class on desktop to trigger animations
+            if (window.innerWidth > 1080) {
+                body.classList.add('loaded');
+            } else {
+                // On mobile, show content immediately without sidebar animation
+                const sidebar = document.querySelector('.sidebar');
+                const mainContent = document.querySelector('.main-content-area');
+                if (sidebar) {
+                    sidebar.style.opacity = '1';
+                    sidebar.style.visibility = 'visible';
+                }
+                if (mainContent) {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.visibility = 'visible';
+                }
+            }
             return;
         }
         
@@ -19,9 +76,21 @@ function initLoadingScreen() {
                 loadingScreen.style.opacity = '0';
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
-                    // Only trigger entrance animations on first load and desktop
+                    // Only trigger entrance animations on desktop
                     if (window.innerWidth > 1080) {
                         body.classList.add('loaded');
+                    } else {
+                        // On mobile, show content immediately without sidebar animation
+                        const sidebar = document.querySelector('.sidebar');
+                        const mainContent = document.querySelector('.main-content-area');
+                        if (sidebar) {
+                            sidebar.style.opacity = '1';
+                            sidebar.style.visibility = 'visible';
+                        }
+                        if (mainContent) {
+                            mainContent.style.opacity = '1';
+                            mainContent.style.visibility = 'visible';
+                        }
                     }
                     // Mark as loaded in session storage
                     sessionStorage.setItem('siteLoaded', 'true');
@@ -35,6 +104,51 @@ function initLoadingScreen() {
 initLoadingScreen();
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Force scroll to top immediately on project pages
+    if (window.location.pathname.includes('/proyectos/')) {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        
+        // Prevent scroll restoration
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        // Aggressive scroll prevention
+        let scrollAttempts = 0;
+        const maxScrollAttempts = 20;
+        
+        const preventScroll = () => {
+            if (scrollAttempts < maxScrollAttempts) {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+                scrollAttempts++;
+                requestAnimationFrame(preventScroll);
+            }
+        };
+        
+        // Start aggressive scroll prevention
+        preventScroll();
+        
+        // Also listen for scroll events
+        const scrollHandler = (e) => {
+            if (scrollAttempts < maxScrollAttempts) {
+                e.preventDefault();
+                window.scrollTo(0, 0);
+            }
+        };
+        
+        window.addEventListener('scroll', scrollHandler, { passive: false });
+        
+        // Remove scroll prevention after content is loaded
+        setTimeout(() => {
+            window.removeEventListener('scroll', scrollHandler);
+            scrollAttempts = maxScrollAttempts; // Stop the animation frame loop
+        }, 2000);
+    }
+
     // Add pointer cursor to navigation and logo
     const navElements = document.querySelectorAll('.main-nav a, .logo');
     navElements.forEach(element => {
@@ -259,6 +373,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Features Accordion functionality
+    function initFeaturesAccordion() {
+        const featureItems = document.querySelectorAll('.feature-accordion-item');
+        
+        featureItems.forEach(item => {
+            const question = item.querySelector('.feature-question');
+            const answer = item.querySelector('.feature-answer');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                featureItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherAnswer = otherItem.querySelector('.feature-answer');
+                        otherAnswer.style.maxHeight = '0';
+                    }
+                });
+                
+                // Toggle current item
+                if (isActive) {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = '0';
+                } else {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+    }
+
     // FAQ Accordion functionality
     function initFAQAccordion() {
         const faqItems = document.querySelectorAll('.faq-item');
@@ -291,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Interactive Distance Map
+    // Interactive Distance Map with Responsive Positioning
     function initDistanceMap() {
         const distanceSections = document.querySelectorAll('#ubicacion');
         
@@ -307,7 +453,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const tooltip = point.querySelector('.distance-tooltip');
                     if (tooltip) {
                         tooltip.style.opacity = '1';
-                        tooltip.style.transform = 'translateY(-10px)';
+                        tooltip.style.visibility = 'visible';
+                        tooltip.style.transform = 'translateX(-50%) translateY(-10px)';
                     }
                 });
                 
@@ -316,7 +463,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const tooltip = point.querySelector('.distance-tooltip');
                     if (tooltip) {
                         tooltip.style.opacity = '0';
-                        tooltip.style.transform = 'translateY(0)';
+                        tooltip.style.visibility = 'hidden';
+                        tooltip.style.transform = 'translateX(-50%) translateY(0)';
                     }
                 });
                 
@@ -331,7 +479,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Adaptive Cursor
+    // Responsive Map Point Positioning
+    function adjustMapPointsForScreenSize() {
+        const mapContainers = document.querySelectorAll('.distance-map');
+        
+        mapContainers.forEach(container => {
+            const iframe = container.querySelector('iframe');
+            const points = container.querySelectorAll('.distance-point');
+            
+            if (!iframe || points.length === 0) return;
+            
+            // Get current viewport dimensions
+            const viewportWidth = window.innerWidth;
+            const containerRect = container.getBoundingClientRect();
+            
+            // Apply responsive positioning based on screen size
+            // The CSS media queries handle most of this, but we can add
+            // fine-tuning here if needed for specific edge cases
+            
+            points.forEach(point => {
+                // Ensure tooltips don't go off-screen
+                const tooltip = point.querySelector('.distance-tooltip');
+                if (tooltip) {
+                    const pointRect = point.getBoundingClientRect();
+                    const tooltipRect = tooltip.getBoundingClientRect();
+                    
+                    // Adjust tooltip position if it goes off-screen
+                    if (pointRect.left + tooltipRect.width/2 > containerRect.right) {
+                        tooltip.style.transform = 'translateX(-80%) translateY(-10px)';
+                    } else if (pointRect.left - tooltipRect.width/2 < containerRect.left) {
+                        tooltip.style.transform = 'translateX(-20%) translateY(-10px)';
+                    }
+                }
+            });
+        });
+    }
+
+    // Debounced resize handler to avoid excessive calculations
+    let resizeTimeout;
+    function handleMapResize() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            adjustMapPointsForScreenSize();
+        }, 150);
+    }
+
+    // Initialize responsive map positioning
+    window.addEventListener('resize', handleMapResize);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(adjustMapPointsForScreenSize, 500); // Delay for orientation change
+    });
+
+    // Adaptive Cursor with hero/footer fixes
     function initAdaptiveCursor() {
         const cursorInner = document.querySelector('.cursor-inner');
         const cursorOuter = document.querySelector('.cursor-outer');
@@ -342,6 +541,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
             
             if (!elementUnderCursor) return;
+            
+            // Check if cursor is in hero or footer sections
+            const heroSection = elementUnderCursor.closest('#home, #hero');
+            const footerSection = elementUnderCursor.closest('.site-footer');
+            
+            if (heroSection || footerSection) {
+                // Force white cursor in hero and footer
+                cursorInner.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                cursorOuter.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                return;
+            }
             
             const computedStyle = window.getComputedStyle(elementUnderCursor);
             const backgroundColor = computedStyle.backgroundColor;
@@ -526,10 +736,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize all functionalities
     initDistanceMap();
+    adjustMapPointsForScreenSize(); // Initial adjustment
     initAdaptiveCursor();
     initProjectCardsClick();
     initContactButtonClick();
     initGallerySlider();
+    initFeaturesAccordion();
     initFAQAccordion();
 });
 
