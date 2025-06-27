@@ -7,7 +7,7 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #333;
     overflow-x: hidden; 
 }
@@ -42,7 +42,7 @@ body {
 }
 
 .logo {
-    max-width: 200px;
+    max-width: 260px;
     border: none;
     padding: 0;
     margin: 0 auto;
@@ -90,11 +90,12 @@ body {
     outline: none;
     box-shadow: none;
     transition: color 0.3s ease, font-weight 0.3s ease, font-size 0.3s ease, letter-spacing 0.3s ease, margin-left 0.3s ease;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     letter-spacing: 0.1px;
     flex: 1;
     margin-left: 40px; /* Reducido de 45px a 40px para acercar un poco más el texto al círculo */
+    text-transform: uppercase; /* Agregado para poner en mayúsculas */
 }
 
 /* Línea horizontal */
@@ -104,12 +105,12 @@ body {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 20px;
+    width: 0; /* Cambiado de 20px a 0 para que desaparezca completamente */
     height: 2px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 1px;
-    opacity: 0.7;
-    transition: width 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0; /* Cambiado de 0.7 a 0 para que desaparezca completamente */
+    transition: width 0.4s ease, background-color 0.3s ease, opacity 0.3s ease; /* Aumentado el tiempo de transición para la animación */
 }
 
 /* Viñeta circular */
@@ -121,7 +122,7 @@ body {
     transform: translateY(-50%);
     font-size: 14px;
     color: rgba(255, 255, 255, 0.5);
-    transition: left 0.3s ease, color 0.3s ease, font-size 0.3s ease, content 0.3s ease;
+    transition: left 0.4s ease, color 0.3s ease, font-size 0.3s ease, content 0.3s ease; /* Aumentado el tiempo de transición */
 }
 
 /* Estado activo */
@@ -134,9 +135,9 @@ body {
 }
 
 .main-nav li.active::before {
-    width: 32px;
+    width: 32px; /* La línea aparece con animación de expansión */
     background: #fff;
-    opacity: 1;
+    opacity: 1; /* Aparece completamente */
 }
 
 .main-nav li.active a::before {
@@ -200,7 +201,7 @@ body {
     outline: none;
     box-shadow: none;
     transition: color 0.3s ease, font-weight 0.3s ease, font-size 0.3s ease, letter-spacing 0.3s ease, margin-left 0.3s ease;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     letter-spacing: 0.1px;
     flex: 1;
@@ -214,12 +215,12 @@ body {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 20px;
+    width: 0; /* Mantener en 0 para que no aparezca en hover */
     height: 2px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 1px;
-    opacity: 0.7;
-    transition: width 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0; /* Mantener en 0 para que no aparezca en hover */
+    transition: width 0.4s ease, background-color 0.3s ease, opacity 0.3s ease;
 }
 
 .main-nav li:hover a::before,
@@ -233,7 +234,7 @@ body {
     transform: translateY(-50%);
     font-size: 14px;
     color: rgba(255, 255, 255, 0.5);
-    transition: left 0.3s ease, color 0.3s ease, font-size 0.3s ease, content 0.3s ease;
+    transition: left 0.4s ease, color 0.3s ease, font-size 0.3s ease, content 0.3s ease;
 }
 
 /* Mantener estilos activos incluso en hover */
@@ -414,10 +415,12 @@ body.loaded .main-content-area {
 }
 
 .page-section h2 {
-    font-size: 36px;
-    color: #2c3e50; /* Un azul oscuro/gris para títulos */
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: #2c3e50;
     text-align: center;
-    margin-bottom: 20px;
+    text-transform: uppercase; /* Agregado para poner en mayúsculas */
 }
 
 .page-section .section-intro {
@@ -482,32 +485,37 @@ body.loaded .main-content-area {
     position: relative; 
     z-index: 3;
     color: #fff;
-    padding: 40px 60px; 
-    text-align: right; 
-    max-width: 500px; /* Limitado a 500px para evitar líneas muy largas */
-    margin-right: 2%;
-    margin-bottom: 10%; 
+    padding: 30px 40px;
+    text-align: right; /* Alineado a la derecha como en desktop */
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 0; /* Quitar margin-bottom para centrado vertical */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: flex-end; /* Alinear contenido a la derecha */
+    height: 100%; /* Usar toda la altura disponible */
 }
 
 #home .slide-content h2, #hero .slide-content h2 {
-    font-size: 48px;
-    margin-top: 0;
-    margin-bottom: 5px; /* Reducido de 10px */
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #fff; 
+    font-size: 2.2rem; /* Reducido de 3rem */
+    font-weight: 300;
+    margin: 0 0 10px 0;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
 }
 
 #home .slide-content h3, #hero .slide-content h3 {
-    font-size: 28px;
-    margin-bottom: 10px; /* Reducido de 15px */
-    font-weight: normal;
+    font-size: 1rem; /* Reducido de 1.2rem */
+    margin: 0 0 15px 0;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
 }
 
 #home .slide-content p, #hero .slide-content p {
-    font-size: 16px;
-    margin-bottom: 25px; /* Reducido de 30px */
-    line-height: 1.7;
+    font-size: 14px;
+    margin-bottom: 20px;
 }
 
 /* Botón General y Botón del Slider (Ver Más) */
@@ -725,15 +733,19 @@ body.loaded .main-content-area {
 }
 
 .project-card-image {
+    position: relative;
     width: 100%;
-    height: 220px; /* Altura fija para la imagen */
-    object-fit: cover; /* Para que la imagen cubra sin distorsionarse */
+    height: 220px;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .project-card h3 {
-    font-size: 24px;
-    color: #333;
-    margin: 20px 20px 10px 20px;
+    font-size: 1.5rem;
+    margin: 15px 0 10px 0;
+    color: #2c3e50;
+    text-transform: uppercase; /* Agregado para poner en mayúsculas */
+    padding: 0 20px; /* Mismo padding horizontal que la lista para alineación */
 }
 
 .project-card p {
@@ -772,78 +784,133 @@ body.loaded .main-content-area {
 /* Project Card Button - Always Visible */
 .project-card .btn-secondary {
     position: absolute;
-    top: 160px; /* Moved up more - was 180px, now 160px */
-    left: 20px;
-    right: 20px;
-    z-index: 10;
-    opacity: 1; /* Always visible - was 0 */
-    transform: translateY(0); /* No initial transform - was translateY(20px) */
-    transition: all 0.3s ease;
-    
-    /* Hero button styles */
-    background-color: transparent;
-    border-color: #fff;
+    left: 0;
+    right: 0;
+    bottom: calc(100% - 220px); /* Posicionado en la parte inferior de la imagen (220px desde arriba) */
+    width: 100%;
+    border-radius: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+    background: #2c3e50;
     color: #fff;
-    padding: 10px 28px;
+    font-size: 1rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    box-shadow: none;
     text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    border: 2px solid #fff;
-    border-radius: 4px;
+    border: none;
+    padding: 16px 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
 }
 
-.project-card:hover .btn-secondary {
+.project-card:hover .btn-secondary,
+.project-card:focus-within .btn-secondary {
     opacity: 1;
-    transform: translateY(-2px); /* Slight lift on hover */
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
-.project-card .btn-secondary:hover {
-    background-color: #fff;
-    color: #1c1c1c; /* Dark color for contrast */
-    border-color: #fff;
-    transform: translateY(-4px); /* More lift on button hover */
+.project-card .btn-secondary:focus {
+    outline: 2px solid #395169;
+    outline-offset: -2px;
+}
+
+@media (max-width: 600px) {
+    .project-card .btn-secondary {
+        font-size: 0.95rem;
+        padding: 14px 0;
+    }
 }
 
 /* Contacto Section */
 .contact-form {
-    max-width: 700px;
-    margin: 0 auto; /* Centrar el formulario */
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-}
-
-.form-group {
-    margin-bottom: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px 32px 32px 32px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(44,62,80,0.10), 0 1.5px 6px rgba(44,62,80,0.08);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #444;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
+.form-group input[type="tel"],
 .form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 15px;
-    transition: border-color 0.3s ease;
+    padding: 14px 16px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f7f9fa;
+    color: #222;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 1px 2px rgba(44,62,80,0.03);
 }
 
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
 .form-group textarea:focus {
-    border-color: #2c3e50; /* Color de acento al enfocar */
+    border-color: #2c3e50;
     outline: none;
+    background: #fff;
+    box-shadow: 0 0 0 2px #e0e7ef;
+}
+
+.contact-form .btn {
+    background: linear-gradient(90deg, #2c3e50 0%, #395169 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 14px 0;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    letter-spacing: 1px;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+.contact-form .btn:hover {
+    background: linear-gradient(90deg, #395169 0%, #2c3e50 100%);
+    box-shadow: 0 4px 16px rgba(44,62,80,0.13);
+    transform: translateY(-2px) scale(1.03);
+}
+
+@media (max-width: 600px) {
+    .contact-form {
+        padding: 12px 2vw 12px 2vw;
+        border-radius: 10px;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group textarea {
+        font-size: 0.98rem;
+        padding: 10px 8px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .contact-form .btn {
+        font-size: 1rem;
+        padding: 12px 0;
+    }
 }
 
 /* Ken Burns Zoom Effect for Active Slider Background */
@@ -852,7 +919,7 @@ body.loaded .main-content-area {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.05); /* Sutil zoom in */
+        transform: scale(1.13); /* Zoom más pronunciado */
     }
     100% {
         transform: scale(1);
@@ -860,7 +927,7 @@ body.loaded .main-content-area {
 }
 
 #home .slide.active .slide-background, #hero .slide.active .slide-background {
-    animation: kenBurnsZoom 30s ease-in-out infinite; /* Aumentada duración de 15s a 30s */
+    animation: kenBurnsZoom 45s ease-in-out infinite; /* Más prolongada */
 }
 
 /* Scroll Animation Base Styles */
@@ -931,12 +998,11 @@ body.loaded .main-content-area {
 }
 
 .footer-column h4 {
-    color: #e0e0e0; /* Títulos de columna más claros */
-    font-size: 18px;
-    margin-top: 0;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase; /* Agregado para poner en mayúsculas */
 }
 
 .footer-column h4::after {
@@ -1142,96 +1208,122 @@ body.loaded .main-content-area {
 
 @media (max-width: 1080px) { /* Móvil */
     .sidebar {
-        transform: translateX(-100%); /* Oculta por defecto fuera de la pantalla */
-        width: 280px; /* Puede ser un ancho fijo o porcentaje para móvil */
-        background-color: rgba(28, 28, 28, 0.95); /* Más opaca en móvil para legibilidad */
-        backdrop-filter: blur(8px); 
-        -webkit-backdrop-filter: blur(8px);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
     }
+    
     .sidebar.sidebar-open {
-        transform: translateX(0); /* Muestra la sidebar */
+        transform: translateX(0);
     }
-
+    
     .mobile-nav-toggle {
-        display: block; /* Muestra el botón hamburguesa */
+        display: block;
     }
-
+    
     .page-section {
-        padding-left: 40px; /* Padding normal cuando la sidebar está oculta */
-        /* O padding-left: 20px; o lo que se necesite para móvil */
+        padding: 40px 20px;
+        padding-left: 20px; /* Sin padding extra para la sidebar en móvil */
     }
-    /* Cuando la sidebar esté abierta en móvil, podrías querer empujar el contenido 
-       o poner un overlay. Por ahora, la sidebar se superpondrá. */
-
-    /* ... (Otros ajustes de 768px existentes como .main-nav li.active::after, etc.) ... */
+    
     .main-nav li.active::after {
-        display: none; 
+        display: none; /* Ocultar la línea activa en móvil */
     }
+    
     .main-content-area {
-        /* margin-left: 0; Ya no se usa margin-left globalmente */
-        width: 100%;
+        margin-left: 0;
     }
+    
     .logo { /* Estilos para la <img> si se usa en móvil */
-        max-width: 150px; 
-        width: auto;
-        height: auto;
-        background-color: transparent; 
+        max-width: 200px; /* Reducido a un tamaño más apropiado para móvil */
+        border: none;
+        padding: 0;
+        margin: 0 auto;
+        display: block;
     }
-    /* .logo-placeholder { Estilos para el placeholder en móvil 
-        font-size: 20px;
-        padding: 15px 20px;
-        border-width: 1px;
-    } */
+    
+    /* Reducir tamaño del texto del navbar en móvil */
+    .main-nav li a {
+        font-size: 13px; /* Reducido de 15px */
+        padding: 6px 0 6px 0; /* Reducir padding vertical */
+        margin-left: 35px; /* Reducir margen izquierdo */
+    }
+    
+    .main-nav li a::before {
+        font-size: 12px; /* Reducir tamaño de las viñetas */
+        left: 20px; /* Ajustar posición de las viñetas */
+    }
+    
     #home .slide-content, #hero .slide-content {
-        padding: 20px 25px; 
-        max-width: calc(100% - 20px); /* Más ancho en móviles */
-        margin-left: auto; /* Para alinear a la derecha con max-width */
-        margin-right: 10px; /* Más cerca del borde derecho */
-        margin-bottom: 80px; 
-        text-align: right; /* Contenido del slider alineado a la derecha en móvil */
+        padding: 30px 40px;
+        text-align: right; /* Alineado a la derecha como en desktop */
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 0; /* Quitar margin-bottom para centrado vertical */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centrar verticalmente */
+        align-items: flex-end; /* Alinear contenido a la derecha */
+        height: 100%; /* Usar toda la altura disponible */
     }
+    
     #home .slide-content h2, #hero .slide-content h2 {
-        font-size: 30px; /* Ajustar tamaño de fuente */
+        font-size: 2.2rem; /* Reducido de 3rem */
+        font-weight: 300;
+        margin: 0 0 10px 0;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        text-transform: uppercase;
     }
+    
     #home .slide-content h3, #hero .slide-content h3 {
-        font-size: 18px; /* Ajustar tamaño de fuente */
+        font-size: 1rem; /* Reducido de 1.2rem */
+        margin: 0 0 15px 0;
+        color: rgba(255, 255, 255, 0.9);
+        text-transform: uppercase;
     }
+    
     #home .slide-content p, #hero .slide-content p {
-        font-size: 14px; /* Ajustar tamaño de fuente */
+        font-size: 14px;
         margin-bottom: 20px;
     }
     
     #home .slide-content .btn, #hero .slide-content .btn {
-        width: auto; /* No más ancho completo */
-        padding: 8px 20px; /* Más pequeño y modesto */
+        padding: 8px 20px;
         font-size: 13px;
-        float: right; /* Para asegurar alineación derecha si el texto anterior no lo fuerza */
-        clear: both; /* Para asegurar que esté debajo de otros elementos flotantes si los hubiera */
-        margin-top: 10px; /* Espacio por si el párrafo es corto */
     }
-
+    
     .slider-dots {
-        bottom: 40px; 
-        gap: 12px; /* Ajustado el gap para puntos más pequeños */
+        bottom: 80px; /* Subido a 80px para estar completamente por encima de la barra de navegación móvil */
+        right: 50%;
+        transform: translateX(50%);
+        gap: 10px;
+        top: auto; /* Quitar top para usar bottom */
     }
+    
+    /* Aplicar el mismo cambio para las páginas de proyectos */
+    #hero .slider-dots {
+        bottom: 80px; /* Subido a 80px para estar completamente por encima de la barra de navegación móvil */
+        right: 50%;
+        transform: translateX(50%);
+        gap: 10px;
+        top: auto; /* Quitar top para usar bottom */
+    }
+    
     .slider-dots .dot {
-        width: 14px; /* Reducido ~30% de 20px */
-        height: 14px; /* Reducido ~30% de 20px */
+        width: 8px;
+        height: 8px;
     }
-    /* ... (resto de ajustes de 768px) ... */
-
+    
     .project-listing {
-        /* No se necesitan cambios aquí si .project-card se ajusta bien */
+        flex-direction: column;
     }
-
+    
     .project-card {
-        width: 100%; 
-        max-width: none; 
-        margin-left: auto; 
-        margin-right: auto;
-        /* border-radius: 0; Ya no es necesario aquí si se eliminó globalmente */
+        width: 100%;
+        max-width: none;
+        margin-bottom: 30px;
     }
-    /* ... (resto de ajustes de 768px) ... */
 }
 
 /* Estilos para el Cursor Mágico (básicos) */
@@ -1431,6 +1523,7 @@ body.loaded .main-content-area {
     align-items: center;
     justify-content: space-between;
     transition: background-color 0.3s ease;
+    text-transform: uppercase; /* Agregado para poner en mayúsculas */
 }
 
 .feature-question:hover {
@@ -1502,7 +1595,7 @@ body.loaded .main-content-area {
     max-width: 800px;
     margin: 0 auto;
     background: #fff;
-    border-radius: 8px;
+    border-radius: 0 !important;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
@@ -1582,14 +1675,14 @@ body.loaded .main-content-area {
 
 .gallery-thumbnails::-webkit-scrollbar-thumb {
     background: #ccc;
-    border-radius: 2px;
+    border-radius: 0 !important;
 }
 
 .gallery-thumb {
     flex-shrink: 0;
     width: 60px;
     height: 60px;
-    border-radius: 4px;
+    border-radius: 0 !important;
     overflow: hidden;
     cursor: pointer;
     opacity: 0.7;
@@ -1644,6 +1737,7 @@ body.loaded .main-content-area {
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase; /* Agregado para poner en mayúsculas */
 }
 
 .faq-question:hover {
@@ -1686,38 +1780,43 @@ body.loaded .main-content-area {
 /* Project Card Image Updates */
 .project-card .btn-secondary {
     position: absolute;
-    top: 160px; /* Moved up more - was 180px, now 160px */
-    left: 20px;
-    right: 20px;
-    z-index: 10;
-    opacity: 1; /* Always visible - was 0 */
-    transform: translateY(0); /* No initial transform - was translateY(20px) */
-    transition: all 0.3s ease;
-    
-    /* Hero button styles */
-    background-color: transparent;
-    border-color: #fff;
+    left: 0;
+    right: 0;
+    bottom: calc(100% - 220px); /* Posicionado en la parte inferior de la imagen (220px desde arriba) */
+    width: 100%;
+    border-radius: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+    background: #2c3e50;
     color: #fff;
-    padding: 10px 28px;
+    font-size: 1rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    box-shadow: none;
     text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    border: 2px solid #fff;
-    border-radius: 4px;
+    border: none;
+    padding: 16px 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
 }
 
-.project-card:hover .btn-secondary {
+.project-card:hover .btn-secondary,
+.project-card:focus-within .btn-secondary {
     opacity: 1;
-    transform: translateY(-2px); /* Slight lift on hover */
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
-.project-card .btn-secondary:hover {
-    background-color: #fff;
-    color: #1c1c1c; /* Dark color for contrast */
-    border-color: #fff;
-    transform: translateY(-4px); /* More lift on button hover */
+.project-card .btn-secondary:focus {
+    outline: 2px solid #395169;
+    outline-offset: -2px;
+}
+
+@media (max-width: 600px) {
+    .project-card .btn-secondary {
+        font-size: 0.95rem;
+        padding: 14px 0;
+    }
 }
 
 /* Interactive Distance Map Styles */
@@ -1851,6 +1950,7 @@ body.loaded .main-content-area {
     margin: 0 0 8px 0;
     font-size: 16px;
     font-weight: 600;
+    text-transform: uppercase; /* Agregado para poner en mayúsculas */
 }
 
 .distance-tooltip p {
@@ -2256,6 +2356,91 @@ body.loaded .main-content-area {
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     margin: 40px 0;
+}
+
+@keyframes kenBurnsZoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.13); /* Zoom más pronunciado */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#home .slide.active .slide-background, #hero .slide.active .slide-background {
+    animation: kenBurnsZoom 45s ease-in-out infinite; /* Más prolongada */
+}
+
+.contact-form, .contact-form * {
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 600px) {
+    .contact-form {
+        padding: 12px 2vw 12px 2vw;
+        border-radius: 10px;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group textarea {
+        font-size: 0.98rem;
+        padding: 10px 8px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+}
+
+.project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card .btn-secondary {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(100% - 220px); /* Posicionado en la parte inferior de la imagen (220px desde arriba) */
+    width: 100%;
+    border-radius: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+    background: #2c3e50;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: none;
+    text-align: center;
+    border: none;
+    padding: 16px 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+}
+
+.project-card:hover .btn-secondary,
+.project-card:focus-within .btn-secondary {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.project-card .btn-secondary:focus {
+    outline: 2px solid #395169;
+    outline-offset: -2px;
+}
+
+@media (max-width: 600px) {
+    .project-card .btn-secondary {
+        font-size: 0.95rem;
+        padding: 14px 0;
+    }
 }
 
  
