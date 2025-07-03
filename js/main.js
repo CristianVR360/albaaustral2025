@@ -1,38 +1,58 @@
 // Main JavaScript file for Alba Austral website
 
-// Immediate scroll prevention for project pages
+// Utility function to throttle frequent events
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+// Utility function to debounce frequent events
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+}
+
+// Global cleanup variables
+let globalObservers = [];
+let globalIntervals = [];
+let globalTimeouts = [];
+
+// Function to cleanup all global event listeners and observers
+function cleanupGlobalEvents() {
+    globalObservers.forEach(observer => {
+        if (observer && typeof observer.disconnect === 'function') {
+            observer.disconnect();
+        }
+    });
+    globalIntervals.forEach(interval => clearInterval(interval));
+    globalTimeouts.forEach(timeout => clearTimeout(timeout));
+    
+    globalObservers = [];
+    globalIntervals = [];
+    globalTimeouts = [];
+}
+
+// Immediate scroll prevention for project pages - SIMPLIFIED
 if (window.location.pathname.includes('/proyectos/')) {
-    // Prevent any scroll restoration
+    // Simple scroll prevention
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
-    
-    // Force scroll to top immediately
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
     window.scrollTo(0, 0);
-    
-    // Add loaded class to html to enable scrolling
     document.documentElement.classList.add('loaded');
-    
-    // Override any automatic scroll behavior
-    const originalScrollTo = window.scrollTo;
-    const originalScrollBy = window.scrollBy;
-    
-    window.scrollTo = function(x, y) {
-        if (y !== 0) return; // Only allow scroll to top
-        originalScrollTo.call(this, x, y);
-    };
-    
-    window.scrollBy = function(x, y) {
-        return; // Prevent any scroll by
-    };
-    
-    // Restore normal scrolling after page is loaded
-    setTimeout(() => {
-        window.scrollTo = originalScrollTo;
-        window.scrollBy = originalScrollBy;
-    }, 3000);
 }
 
 // Loading Screen functionality
@@ -104,49 +124,9 @@ function initLoadingScreen() {
 initLoadingScreen();
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Force scroll to top immediately on project pages
+    // Simple scroll to top for project pages (removed aggressive prevention)
     if (window.location.pathname.includes('/proyectos/')) {
         window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-        
-        // Prevent scroll restoration
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'manual';
-        }
-        
-        // Aggressive scroll prevention
-        let scrollAttempts = 0;
-        const maxScrollAttempts = 20;
-        
-        const preventScroll = () => {
-            if (scrollAttempts < maxScrollAttempts) {
-                window.scrollTo(0, 0);
-                document.documentElement.scrollTop = 0;
-                document.body.scrollTop = 0;
-                scrollAttempts++;
-                requestAnimationFrame(preventScroll);
-            }
-        };
-        
-        // Start aggressive scroll prevention
-        preventScroll();
-        
-        // Also listen for scroll events
-        const scrollHandler = (e) => {
-            if (scrollAttempts < maxScrollAttempts) {
-                e.preventDefault();
-                window.scrollTo(0, 0);
-            }
-        };
-        
-        window.addEventListener('scroll', scrollHandler, { passive: false });
-        
-        // Remove scroll prevention after content is loaded
-        setTimeout(() => {
-            window.removeEventListener('scroll', scrollHandler);
-            scrollAttempts = maxScrollAttempts; // Stop the animation frame loop
-        }, 2000);
     }
 
     // Add pointer cursor to navigation and logo
@@ -284,6 +264,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const nextIndex = (currentSlide + 1) % slides.length;
             showSlide(nextIndex, true);
         }, 8000); // Changed from 5000 to 8000 (8 seconds)
+        
+        // Register interval for cleanup
+        globalIntervals.push(autoSlideInterval);
     }
 
     // Initialize slider
@@ -575,15 +558,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Update cursor position and color
-        window.addEventListener('mousemove', (e) => {
+        // Throttled update cursor position and color
+        const throttledMouseMove = throttle((e) => {
             cursorOuter.style.left = e.clientX + 'px';
             cursorOuter.style.top = e.clientY + 'px';
             cursorInner.style.left = e.clientX + 'px';
             cursorInner.style.top = e.clientY + 'px';
             
             updateCursorColor(e);
-        });
+        }, 16); // ~60fps for smooth cursor movement
+        
+        window.addEventListener('mousemove', throttledMouseMove);
         
         // Hover effects
         const hoverSelectors = "a:not(.main-nav a), .cursor-pointer, button:not(.main-nav button), input[type='submit'], .slider-dots .dot, .project-card .btn, .contact-form button[type='submit'], .distance-point";
@@ -607,17 +592,19 @@ document.addEventListener('DOMContentLoaded', function() {
         cursorOuter.style.visibility = 'visible';
     }
 
-    // Active navigation link based on scroll position (Scrollspy)
+    // Optimized navigation scrollspy with throttling
     const navLinks = document.querySelectorAll('.main-nav ul li a');
     const sections = document.querySelectorAll('.main-content-area section[id]');
 
     if (navLinks.length > 0 && sections.length > 0) {
         const scrollSpyObserverOptions = {
             root: null,
-            rootMargin: '0px',
-            threshold: 0.4 
+            rootMargin: '-20% 0px -70% 0px', // Improved margins for better detection
+            threshold: 0.1 // Reduced threshold for less aggressive detection
         };
-        const scrollSpyObserver = new IntersectionObserver((entries, observer) => {
+        
+        // Throttled observer callback to prevent excessive updates
+        const throttledScrollSpy = throttle((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     navLinks.forEach(link => {
@@ -628,10 +615,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             });
-        }, scrollSpyObserverOptions);
+        }, 150); // Throttle to 150ms
+        
+        const scrollSpyObserver = new IntersectionObserver(throttledScrollSpy, scrollSpyObserverOptions);
         sections.forEach(section => {
             scrollSpyObserver.observe(section);
         });
+        
+        // Store observer for cleanup
+        globalObservers.push(scrollSpyObserver);
     }
 
     // Scroll Animations for elements
@@ -743,6 +735,26 @@ document.addEventListener('DOMContentLoaded', function() {
     initGallerySlider();
     initFeaturesAccordion();
     initFAQAccordion();
+    
+    // Cleanup function for page unload
+    window.addEventListener('beforeunload', () => {
+        cleanupGlobalEvents();
+    });
+    
+    // Optional: Add visibility change handler to pause/resume activities
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Page is hidden, reduce activity
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+        } else {
+            // Page is visible again, resume activities
+            if (isMainPage && slides.length > 1) {
+                startAutoSlide();
+            }
+        }
+    });
 });
 
 // ---------------------------------------------------- //
